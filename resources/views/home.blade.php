@@ -6,24 +6,28 @@
             <h3 class="page__heading">Dashboard</h3>
         </div>
         <!-- <div class="section-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="text-center">Dashboar</h3>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="text-center">Dashboar</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
         <div class="row  d-block">
             <div class="float-sm-right">
-                {!! Form::open(array('route' => 'history.store', 'method' => 'POST')) !!}
-                    <div class="input-group">
-                        <div class="form-outline">
-                            {!! Form::text('num_socio', null, array('class' => 'form-control', 'placeholder' => 'Num Socio', 'autofocus' => 'true')) !!}
-                        </div>
+                {!! Form::open(['route' => 'history.store', 'method' => 'POST']) !!}
+                <div class="input-group">
+                    <div class="form-outline">
+                        {!! Form::text('num_socio', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Num Socio',
+                            'autofocus' => 'true',
+                        ]) !!}
                     </div>
+                </div>
                 {!! Form::close() !!}
             </div>
         </div>
@@ -36,21 +40,23 @@
                                 <thead style="background-color: #6777ef;">
                                     <th style="color: #fff;">Fecha</th>
                                     <th style="color: #fff;">Num Socio</th>
-                                    <th style="color: #fff;"></th>
+                                    <th style="color: #fff;">Nombre</th>
+                                    <th style="color: #fff;">Apellidos</th>
                                 </thead>
                                 <tbody id="tableSucursales">
                                     @forelse ($registers as $register)
                                         <tr>
                                             <td>{{ $register->date }}</td>
                                             <td>{{ $register->num_socio }}</td>
-                                            <td></td>
+                                            <td>{{ $register->name }}</td>
+                                            <td>{{ $register->lastname }} {{ $register->second_lastname }}</td>
                                         </tr>
-                                     @empty
+                                    @empty
                                         <tr>
                                             <td colspan="8">Sin registros</td>
                                         </tr>
                                     @endforelse
-                                    </tbody>
+                                </tbody>
                             </table>
                             <div class="pagination" id="pag">
                                 {{ $registers->links() }}
@@ -62,4 +68,3 @@
         </div>
     </section>
 @endsection
-

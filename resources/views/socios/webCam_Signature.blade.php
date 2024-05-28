@@ -1,47 +1,123 @@
-<p>
-  <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Firma Digital</button>
-  <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Capturar / Subir foto</button>
-</p>
+<style>
+    .drop-container {
+        border-radius: .25rem;
+        border: 1px solid #e4e6fc;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .labelWeb {
+        font-weight: 600;
+        color: #34395e;
+        font-size: 12px;
+        letter-spacing: .5px;
+    }
+
+    #myCamera {
+        width: 192px !important;
+        /* margin-bottom: 5px; */
+        height: auto !important;
+    }
+
+    video {
+        /* height: auto !important; */
+        width: 100%;
+        height: 132px !important;
+        border-radius: 0.25rem;
+        border: 1px solid #e4e6fc;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    #results img {
+        border-radius: 0.25rem;
+        border: 1px solid #e4e6fc;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    ul.nav-tabs li.nav-item a.nav-link.active i {
+        color: #ffffff;
+    }
+</style>
 <div class="row">
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample1">
-      <div class="card card-body">
-        <div class="">
-            <canvas id="canvas" style="border: 1px solid black;"></canvas>
-            <br>
-            <input type="button" class="btn btn-success" id="btnDescargar" value="Guardar" />
-            <input type="button" class="btn btn-secondary" id="btnLimpiar" value="Limpiar" />
-            <input type="hidden" name="signData" id="signData">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample2">
-      <div class="card card-body">
-        <div class="row">
-            <div class="col">
-                <label for="">Tomar foto</label>
-                <div>
-                    <div id="myCamera"></div>
-                    <input type="button" class="btn btn-success" onClick="takeSnapshot();" value="Tomar Foto" />
-                </div>
-                <div>
-                    <div id="results"></div>
-                    <div id="text" hidden></div>
+    <div class="col-xl-4 col-md-8">
+        <ul class="nav nav-pills nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#menu1">
+                    <i class="fas fa-camera"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2">
+                    <i class="fas fa-image"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="menu1" class="tab-pane active">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="myCamera"></div>
+                        <input type="button" class="btn btn-success" onClick="takeSnapshot();" value="Tomar Foto" />
+                    </div>
+                    <div class="col-md-6">
+                        <div id="results"></div>
+                        <div id="text" class="d-none"></div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <label for="">Subir foto</label>
-                <input type="file" name="image" id="upload_photo">
+            <div id="menu2" class="tab-pane fade">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-warning" style="z-index: 0;" id="showFile2" type="button">Subir
+                            Archivo</button>
+                    </div>
+                    <input type="text" id="nameFile2" class="form-control" placeholder="Nombre de Archivo" readonly>
+                </div>
+                <input type="file" class="d-none" name="image" id="upload_photo">
             </div>
         </div>
-      </div>
     </div>
-  </div>
+    <div class="col-xl-4 col-md-6">
+        <label class="labelWeb">Es necesario leer los documentos antes de firmar:</label>
+        <br>
+        <ul>
+            <li><a target="_blank" href="{{ asset('files/REGLAMENTO.pdf') }}">
+                    <span style="text-decoration: underline var(--secondary);">Aviso de Términos y Condiciones.</span>
+                </a></li>
+            <li><a target="_blank" href="{{ asset('files/REGLAMENTO.pdf') }}">
+                    <span style="text-decoration: underline var(--secondary);">Aviso de Privacidad.</span>
+                </a></li>
+            <li><a target="_blank" href="{{ asset('files/REGLAMENTO.pdf') }}">
+                    <span style="text-decoration: underline var(--secondary);">Reglamento.</span>
+                </a></li>
+            {{-- <li><a target="_blank" href="{{ asset('files/REGLAMENTO.pdf') }}">
+                    <span style="text-decoration: underline var(--secondary);">Ficha Técnica.</span>
+                </a></li> --}}
+        </ul>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <label class="labelWeb">Firma Caligráfica</label>
+
+        <br>
+        <canvas id="canvas" class="drop-container"></canvas>
+        <br>
+        <input type="button" class="btn btn-success" id="btnDescargar" value="Guardar" />
+        <input type="button" class="btn btn-secondary" id="btnLimpiar" value="Limpiar" />
+        <input type="hidden" name="signData" id="signData">
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+<script>
+    var showFile2 = document.getElementById("showFile2");
+    var nameFile2 = document.getElementById("nameFile2");
+    var dataFile2 = document.getElementById("upload_photo");
+    showFile2.onclick = function() {
+        dataFile2.click();
+        dataFile2.onchange = function() {
+            nameFile2.value = dataFile2.files[0].name;
+        }
+    }
+</script>
 <script>
     //-----------------------------------
     //Firma Digital
@@ -54,7 +130,10 @@
     const COLOR_PINCEL = '#000000';
     const COLOR_FONDO = '#FFFFFF';
     const GROSOR = 1.5;
-    let xAnterior = 0, yAnterior = 0, xActual = 0, yActual = 0;
+    let xAnterior = 0,
+        yAnterior = 0,
+        xActual = 0,
+        yActual = 0;
     const obtenerXReal = (clientX) => clientX - $canvas.getBoundingClientRect().left;
     const obtenerYReal = (clientY) => clientY - $canvas.getBoundingClientRect().top;
     let haComenzadoDibujo = false;
@@ -118,11 +197,13 @@
         jpeg_quality: 90
     });
     Webcam.attach('#myCamera');
+
     function takeSnapshot() {
-        Webcam.snap( function(data_uri) {
+        Webcam.snap(function(data_uri) {
             $(".image-tag").val(data_uri);
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-            document.getElementById('text').innerHTML = '<input type="text" id="image-tag" name="image-tag" value="'+data_uri+'"/>';
-        } );
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+            document.getElementById('text').innerHTML =
+                '<input type="text" id="image-tag" name="image-tag" value="' + data_uri + '"/>';
+        });
     }
 </script>
