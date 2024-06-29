@@ -498,7 +498,7 @@ END CONFIG STYLES
         /*
 RESPONSIVE STYLES
 Please do not delete and edit CSS styles below.
- 
+
 If you don't need responsive layout, please delete this section.
 */
         @media only screen and (max-width: 600px) {

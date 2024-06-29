@@ -498,7 +498,7 @@ END CONFIG STYLES
         /*
 RESPONSIVE STYLES
 Please do not delete and edit CSS styles below.
- 
+
 If you don't need responsive layout, please delete this section.
 */
         @media only screen and (max-width: 600px) {
@@ -863,7 +863,7 @@ END RESPONSIVE STYLES
                                                                                         align="left">
                                                                                         <h2
                                                                                             style="font-size: 28px; margin:25px;">
-                                                                                            Hola {{ $name }}!
+                                                                                            Hola,{{ ' ' . $name }}!
                                                                                         </h2>
                                                                                     </td>
                                                                                 </tr>
@@ -885,29 +885,63 @@ END RESPONSIVE STYLES
                                                                                         <p
                                                                                             style="line-height: 150%; font-size: 13pt; margin-left:25px;margin-right:25px;">
                                                                                             <span
-                                                                                                class="product-description">Ahora
+                                                                                                class="product-description">
+                                                                                                Esperamos que tengas una
+                                                                                                experiencia inolvidable
+                                                                                                ahora que formas
+                                                                                                parte de Valparaíso Spa
+                                                                                                "Aguas Termales”.
+                                                                                                Queremos agradecer tu
+                                                                                                valiosa preferencia.
+                                                                                                {{-- Ahora
                                                                                                 formas parte de
                                                                                                 valparaiso spa,
                                                                                                 queremos&nbsp;agradecer&nbsp;tu
                                                                                                 valiosa preferencia,
                                                                                                 esperando que tengas una
                                                                                                 experiencia
-                                                                                                inolvidable.</span>
+                                                                                                inolvidable. --}}
+                                                                                            </span>
                                                                                         </p>
                                                                                         <p
                                                                                             style="line-height: 150%; font-size: 13pt; margin-left:25px;margin-right:25px;">
-                                                                                            Cuenta con nosotros para
-                                                                                            cualquier duda o aclaración.
+                                                                                            Para cualquier pregunta o
+                                                                                            aclaración, cuenta con
+                                                                                            nosotros.
                                                                                         </p>
                                                                                         <p
                                                                                             style="line-height: 150%; font-size: 13pt; margin-left:25px;margin-right:25px;margin-bottom:25px;">
                                                                                             <span
-                                                                                                class="product-description">A
+                                                                                                class="product-description">
+                                                                                                Nuestro reglamento,
+                                                                                                aviso de privacidad y
+                                                                                                códigos de conducta
+                                                                                                están
+                                                                                                adjuntos a continuación,
+                                                                                                junto con tu credencial
+                                                                                                digital, que debes
+                                                                                                presentar en la
+                                                                                                recepción al ingresar y
+                                                                                                salir de nuestras
+                                                                                                instalaciones.
+                                                                                                {{-- A
                                                                                                 continuación verás
                                                                                                 adjunto
                                                                                                 nuestro&nbsp;reglamento
                                                                                                 y el aviso de
-                                                                                                privacidad.&nbsp;</span>
+                                                                                                privacidad.&nbsp; --}}
+                                                                                            </span>
+                                                                                        </p>
+                                                                                        <p
+                                                                                            style="line-height: 150%; font-size: 13pt; margin-left:25px;margin-right:25px;margin-bottom:25px;">
+                                                                                            <span
+                                                                                                class="product-description">
+                                                                                                Agua Caliente Spa Hot
+                                                                                                Spring S DE RL DE CV. Te
+                                                                                                recuerda que nos
+                                                                                                reservamos el derecho de
+                                                                                                admisión.
+                                                                                            </span>
                                                                                         </p>
                                                                                     </td>
                                                                                 </tr>

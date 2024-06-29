@@ -64,8 +64,8 @@
             <div class="float-right">
                 <div class="input-group">
                     <div class="form-outline">
-                        <input type="search" id="searchUser" onkeyup="searchUser()" class="form-control mr-3"
-                            placeholder="Buscar" style="width:300px;" />
+                        <input type="search" id="searchUser" onkeyup="searchUser()" autocomplete="new-password"
+                            class="form-control mr-3" placeholder="Buscar" style="width:300px;" />
                         <input type="hidden" value="Socios" id="option" name="option">
                     </div>
                 </div>
@@ -107,7 +107,9 @@
                                     <th style="display: none;">ID</th>
                                     <th style="color: #fff; width:auto;">Numero de cliente</th>
                                     <th style="color: #fff; width:auto;">Nombre Completo</th>
-                                    {{-- <th style="color: #fff; width:auto;">Apellidos</th> --}}
+                                    <th style="color: #fff; width:auto;">F.Nacimiento</th>
+                                    <th style="color: #fff; width:auto;">Accesos</th>
+                                    {{-- <th style="color: #fff; width:auto;">Area verde</th> --}}
                                     <th style="color: #fff; width:auto;">Telefono</th>
                                     <th style="color: #fff; width:100%;" class="text-center">Archivos</th>
                                     <th style="color: #fff; width:auto;">Status</th>
@@ -123,6 +125,21 @@
                                                 {{ $partner->Partners->last_name }}
                                                 {{ $partner->Partners->second_lastname }}</td>
                                             {{-- <td>{{ $partner->last_name }} {{ $partner->second_lastname }}</td> --}}
+                                            <td>{{ $partner->Partners->birth }}</td>
+                                            <td class="text-center">
+                                                @if ($partner->Partners->disability == 1)
+                                                    &nbsp;
+                                                    <i class="fas fa-wheelchair"
+                                                        style="font-size: 20px !important; color:#005cbf"></i>
+                                                    &nbsp;
+                                                @endif
+                                                @if ($partner->Partners->area == 1)
+                                                    &nbsp;
+                                                    <i class="fas fa-seedling"
+                                                        style="font-size: 20px !important; color:#00bf49"></i>
+                                                    &nbsp;
+                                                @endif
+                                            </td>
                                             <td>{{ $partner->Partners->phone }}</td>
                                             <td class="text-center">
                                                 @if ($partner->Partners->cer != null)
@@ -152,7 +169,7 @@
                                                     <span class="badge badge-success badge-pill">ACTIVO</span>
                                                 @else
                                                     <span class="badge badge-danger badge-pill" style="cursor: pointer;"
-                                                        onclick="getBaja('{{ $partner->Partners->comm }}')">BAJA</i></span>
+                                                        onclick="getBaja('{{ $partner->Partners->comm }}','{{ $partner->Partners->termination }}')">BAJA</i></span>
                                                 @endif
                                             </td>
                                             {{-- <td>{{ $partner->comm }}</td> --}}
@@ -163,32 +180,44 @@
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item text-warning"
+                                                            href="{{ route('socios.imprimir', $partner->Partners->id) }}"
+                                                            target="_blank">
+                                                            <i class="fas fa-id-card"></i>&nbsp;Imprimir
+                                                            Credencial</a>
+                                                        {{-- <a class="dropdown-item text-warning"
                                                             data-toggle="modal"data-target="#QRModal" id="dataToModal"
                                                             onclick="sendData({{ $partner->Partners->id }},1)">
                                                             <i class="fas fa-id-card"></i>&nbsp;Ver
-                                                            Credencial</a>
+                                                            Credencial</a> --}}
                                                         <a class="dropdown-item text-info"
                                                             href="{{ route('socios.edit', $partner->Partners) }}"><i
                                                                 class="fas fa-edit"></i>&nbsp;Modificar
                                                             Datos</a>
                                                         {{-- {!! Form::open(['method' => 'DELETE', 'rou/te' => ['socios.destroy', $partner], 'style' => 'display:inline']) !!} --}}
-                                                        {!! Form::button('&nbsp;<i class="fa fa-user-times"></i>&nbsp;&nbsp;Dar baja a socio', [
-                                                            /* 'type' => 'submit', */
-                                                            'class' => 'dropdown-item text-danger',
-                                                            'onclick' => 'baja(' . $partner->Partners->id . ')',
-                                                        ]) !!}
-                                                        {{-- {!! Form::submit('Eliminar Socio', ['class' => 'dropdown-item']) !!} --}}
+                                                        @if ($partner->Partners->status == 1)
+                                                            {!! Form::button('&nbsp;<i class="fa fa-user-times"></i>&nbsp;&nbsp;Dar baja a socio', [
+                                                                /* 'type' => 'submit', */
+                                                                'class' => 'dropdown-item text-danger',
+                                                                'onclick' => 'baja(' . $partner->Partners->id . ')',
+                                                            ]) !!}
+                                                        @else
+                                                            {!! Form::button('&nbsp;<i class="fa fa-user-check"></i>&nbsp;&nbsp;Dar Alta a socio', [
+                                                                'class' => 'dropdown-item text-success',
+                                                                'onclick' => 'alta(' . $partner->Partners->id . ')',
+                                                            ]) !!}
+                                                        @endif
+
                                                         {!! Form::close() !!}
                                                         {{-- @include ('socios.ficha_pago1') --}}
-                                                        <a class="dropdown-item text-success" data-toggle="modal"
+                                                        {{-- <a class="dropdown-item text-success" data-toggle="modal"
                                                             data-target="#fichaModal"
                                                             onclick="sendData({{ $partner->Partners->id }},2)"><i
                                                                 class="fas fa-money-check-alt"></i>&nbsp;Gestor
                                                             de
-                                                            Pagos</a>
+                                                            Pagos</a> --}}
                                                         {!! Form::open(['method' => 'POST', 'route' => ['senEmail', $partner->Partners], 'style' => 'display:inline']) !!}
                                                         {{-- {!! Form::submit('Enviar Reglamento', ['class' => 'dropdown-item']) !!} --}}
-                                                        {!! Form::button('<i class="fa fa-scroll"></i>&nbsp;Enviar Reglamento', [
+                                                        {!! Form::button('<i class="fa fa-scroll"></i>&nbsp;Enviar Documentos', [
                                                             'type' => 'submit',
                                                             'class' => 'dropdown-item text-primary',
                                                         ]) !!}
@@ -232,6 +261,8 @@
                                     <th style="color: #fff; width:auto;">Numero de cliente</th>
                                     <th style="color: #fff; width:auto;">Nombre Completo</th>
                                     {{-- <th style="color: #fff; width:auto;">Apellidos</th> --}}
+                                    <th style="color: #fff; width:auto;">F.Nacimiento</th>
+                                    <th style="color: #fff; width:auto;">Accesos</th>
                                     <th style="color: #fff; width:auto;">Telefono</th>
                                     <th style="color: #fff; width:100%;" class="text-center">Archivos</th>
                                     <th style="color: #fff; width:auto;">Status</th>
@@ -247,6 +278,21 @@
                                                 {{ $partner->Partners->last_name }}
                                                 {{ $partner->Partners->second_lastname }}</td>
                                             {{-- <td>{{ $partner->last_name }} {{ $partner->second_lastname }}</td> --}}
+                                            <td>{{ $partner->Partners->birth }}</td>
+                                            <td class="text-center">
+                                                @if ($partner->Partners->disability == 1)
+                                                    &nbsp;
+                                                    <i class="fas fa-wheelchair"
+                                                        style="font-size: 20px !important; color:#005cbf"></i>
+                                                    &nbsp;
+                                                @endif
+                                                @if ($partner->Partners->area == 1)
+                                                    &nbsp;
+                                                    <i class="fas fa-seedling"
+                                                        style="font-size: 20px !important; color:#00bf49"></i>
+                                                    &nbsp;
+                                                @endif
+                                            </td>
                                             <td>{{ $partner->Partners->phone }}</td>
                                             <td class="text-center">
                                                 @if ($partner->Partners->cer != null)
@@ -276,7 +322,7 @@
                                                     <span class="badge badge-success badge-pill">ACTIVO</span>
                                                 @else
                                                     <span class="badge badge-danger badge-pill" style="cursor: pointer;"
-                                                        onclick="getBaja('{{ $partner->Partners->comm }}')">BAJA</i></span>
+                                                        onclick="getBaja('{{ $partner->Partners->comm }}','{{ $partner->Partners->termination }}')">BAJA</i></span>
                                                 @endif
                                             </td>
                                             {{-- <td>{{ $partner->comm }}</td> --}}
@@ -288,20 +334,30 @@
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item text-warning"
-                                                            data-toggle="modal"data-target="#QRModal" id="dataToModal"
-                                                            onclick="sendData({{ $partner->Partners->id }},1)">
-                                                            <i class="fas fa-id-card"></i>&nbsp;Ver
+                                                            href="{{ route('socios.imprimir', $partner->Partners->id) }}"
+                                                            target="_blank">
+                                                            <i class="fas fa-id-card"></i>&nbsp;Imprimir
                                                             Credencial</a>
                                                         <a class="dropdown-item text-info"
                                                             href="{{ route('socios.edit', $partner->Partners) }}"><i
                                                                 class="fas fa-edit"></i>&nbsp;Modificar
                                                             Datos</a>
-                                                        {{-- {!! Form::open(['method' => 'DELETE', 'rou/te' => ['socios.destroy', $partner], 'style' => 'display:inline']) !!} --}}
-                                                        {!! Form::button('&nbsp;<i class="fa fa-user-times"></i>&nbsp;&nbsp;Dar baja a socio', [
-                                                            /* 'type' => 'submit', */
+                                                        @if ($partner->Partners->status == 1)
+                                                            {!! Form::button('&nbsp;<i class="fa fa-user-times"></i>&nbsp;&nbsp;Dar baja a socio', [
+                                                                /* 'type' => 'submit', */
+                                                                'class' => 'dropdown-item text-danger',
+                                                                'onclick' => 'baja(' . $partner->Partners->id . ')',
+                                                            ]) !!}
+                                                        @else
+                                                            {!! Form::button('&nbsp;<i class="fa fa-user-check"></i>&nbsp;&nbsp;Dar Alta a socio', [
+                                                                'class' => 'dropdown-item text-success',
+                                                                'onclick' => 'alta(' . $partner->Partners->id . ')',
+                                                            ]) !!}
+                                                        @endif
+                                                        {{-- {!! Form::button('&nbsp;<i class="fa fa-user-times"></i>&nbsp;&nbsp;Dar baja a socio', [
                                                             'class' => 'dropdown-item text-danger',
                                                             'onclick' => 'baja(' . $partner->Partners->id . ')',
-                                                        ]) !!}
+                                                        ]) !!} --}}
                                                         {{-- {!! Form::submit('Eliminar Socio', ['class' => 'dropdown-item']) !!} --}}
                                                         {!! Form::close() !!}
                                                         {{-- @include ('socios.ficha_pago1') --}}
@@ -313,7 +369,7 @@
                                                             Pagos</a>
                                                         {!! Form::open(['method' => 'POST', 'route' => ['senEmail', $partner->Partners], 'style' => 'display:inline']) !!}
                                                         {{-- {!! Form::submit('Enviar Reglamento', ['class' => 'dropdown-item']) !!} --}}
-                                                        {!! Form::button('<i class="fa fa-scroll"></i>&nbsp;Enviar Reglamento', [
+                                                        {!! Form::button('<i class="fa fa-scroll"></i>&nbsp;Enviar Documentos', [
                                                             'type' => 'submit',
                                                             'class' => 'dropdown-item text-primary',
                                                         ]) !!}
@@ -364,37 +420,122 @@
 
         function baja(val) {
             Swal.fire({
+                icon: "question",
                 title: 'MOTIVO DE BAJA',
                 text: "Escriba el motivo de baja",
-                input: 'text',
                 showCancelButton: true,
+                input: 'textarea',
+                inputPlaceholder: "Maximo 300 caracteres",
+                inputAttributes: {
+                    maxlength: "300"
+                }
             }).then((result) => {
                 if (result.value) {
-                    $.ajax({
-                        type: 'POST',
-                        url: "/socios/" + val,
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
-                        },
-                        data: {
-                            motivo: result.value,
-                        },
-                        success: function(data) {
-                            window.location.reload();
+                    Swal.fire({
+                        title: 'CONFIRMAR BAJA',
+                        text: "Escriba la contraseña",
+                        showCancelButton: true,
+                        input: 'password',
+                        inputPlaceholder: "Contraseña",
+                        inputAttributes: {
+                            autocomplete: 'new-password',
+                            minlength: "1",
+                            maxlength: "9"
                         }
-                    }); //end ajax
+                    }).then((data) => {
+                        if (data.value == "B4j42024.") {
+                            $.ajax({
+                                //type: 'delete',
+                                url: "/socios/" + val,
+                                type: 'POST',
+                                headers: {
+                                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                        "content"
+                                    ),
+                                },
+                                data: {
+                                    _method: 'DELETE',
+                                    tipo: '2',
+                                    motivo: result.value,
+                                },
+                                success: function(data) {
+                                    window.location.reload();
+                                }
+                            }); //end ajax
+
+                        } else {
+                            Swal.fire({
+                                title: "BAJA NO ADMITIDA",
+                                text: "Contraseña Invalida",
+                                icon: "error"
+                            });
+                        } //end if
+                    });
 
                 } //end if
             });
         }
 
-        function getBaja(message) {
+        function alta(val) {
             Swal.fire({
-                icon: 'warning',
-                title: 'Motivo',
-                text: message,
+                title: "¿Está seguro de dar de alta nuevamente al socio?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#31692b",
+                //cancelButtonColor: "var(--primary)",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: 'CONFIRMAR ALTA',
+                        text: "Escriba la contraseña",
+                        showCancelButton: true,
+                        input: 'password',
+                        inputPlaceholder: "Contraseña",
+                        inputAttributes: {
+                            minlength: "1",
+                            autocomplete: "new-password",
+                            maxlength: "9"
+                        }
+                    }).then((data) => {
+                        if (data.value == "4Lt42024.") {
+                            $.ajax({
+                                //type: 'delete',
+                                url: "/socios/" + val,
+                                type: 'POST',
+                                headers: {
+                                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                        "content"
+                                    ),
+                                },
+                                data: {
+                                    _method: 'DELETE',
+                                    tipo: '1',
+                                    motivo: result.value,
+                                },
+                                success: function(data) {
+                                    window.location.reload();
+                                }
+                            }); //end ajax
+
+                        } else {
+                            Swal.fire({
+                                title: "ALTA NO ADMITIDA",
+                                text: "Contraseña Invalida",
+                                icon: "error"
+                            });
+                        } //end if
+                    });
+                }
+            });
+        }
+
+        function getBaja(message, date) {
+            Swal.fire({
+                icon: 'info',
+                title: 'DATOS DE LA BAJA',
+                html: `Fecha: ${date.split(' ')[0].split('-').reverse().join('/')}<br>Motivo: ${message}`
             })
         }
 

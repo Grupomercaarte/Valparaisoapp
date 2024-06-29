@@ -121,7 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/socios', [PartnersController::class, 'store'])->name('socios.store');
     Route::get('/socios/{id}/edit', [PartnersController::class, 'edit'])->name('socios.edit');
     Route::put('/socios/{id}', [PartnersController::class, 'update'])->name('socios.update');
-    Route::post('/socios/{id}', [PartnersController::class, 'destroy'])->name('socios.destroy');
+    Route::delete('/socios/{id}', [PartnersController::class, 'destroy'])->name('socios.destroy');
     Route::get('/socios/modal/{data}', [PartnersController::class, 'modals'])->name('socios.modals');
     Route::get('/socios/fichaPago/{data}', [PartnersController::class, 'modalPago'])->name('socios.modals');
     Route::get('/socios/download-terms', [PartnersController::class, 'downloadTerms'])->name('socios.terms');

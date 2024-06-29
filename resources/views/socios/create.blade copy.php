@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-xl-4 col-md-8">
                                     <div class="form-group">
-                                        <label for="name">Nombre(s)</label>
+                                        <label for="name">Nombre</label>
                                         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
                                     </div>
                                 </div>
@@ -61,6 +61,14 @@
                                         ]) !!}
                                     </div>
                                 </div>
+                                {{-- <div class="form-group">
+                                    <label for="discount">Tipo descuento</label>
+                                    {!! Form::text('discount', null, [
+                                        'class' => 'form-control',
+                                        'id' => 'discount',
+                                        'placeholder' => 'Tipo descuento',
+                                    ]) !!}
+                                </div> --}}
                                 <div class="col-xl-3 col-md-6">
                                     <div class="form-group">
                                         <label>Tipo descuento</label>
@@ -168,17 +176,13 @@
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="phone">Telefono</label>
-                                        {!! Form::text('phone', null, ['class' => 'form-control', 'id' => 'phone', 'maxlength ' => '10']) !!}
+                                        {!! Form::number('phone', null, ['class' => 'form-control', 'id' => 'phone']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="phone_emergency">Teléfono de emergencia</label>
-                                        {!! Form::text('phone_emergency', null, [
-                                            'class' => 'form-control',
-                                            'id' => 'phone_emergency',
-                                            'maxlength ' => '10',
-                                        ]) !!}
+                                        {!! Form::number('phone_emergency', null, ['class' => 'form-control', 'id' => 'phone_emergency']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
@@ -196,37 +200,13 @@
                                         {!! Form::file('certificate', ['class' => 'd-none', 'id' => 'dataFile']) !!}
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label class="labelWeb">ANTES DE FIRMAR.</label>
-                                        <div class="row">
-                                            <div class="col-xl-6 col-md-6">
-                                                <input type="button" class="btn btn-primary form-control"
-                                                    onclick="window.open('{{ asset('doc/Documentos.pdf') }}', '_blank');"
-                                                    value="Leer Documentos">
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <input type="button" class="btn btn-info form-control"
-                                                    data-toggle="modal"data-target="#fichaModal"
-                                                    value="Llenar Ficha tecnica">
-                                            </div>
-                                        </div>
+                                        @include ('socios.webCam_Signature')
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6">
-                                    <input type="button" class="btn btn-primary form-control"
-                                        data-toggle="modal"data-target="#cameraModal" value="Fotografía">
-                                </div>
-                                <div class="col-xl-4 col-lg-6">
-                                    <input type="button" class="btn btn-danger form-control"
-                                        data-toggle="modal"data-target="#firmaModal" value="Firmar">
-                                </div>
+
                                 @include ('socios.ficha_tecnica')
-                                @include ('socios.webCam_Signature')
-                                <div class="col-xl-4 col-lg-6">
-                                    <button class="btn btn-success form-control" id="saveBtn" type="submit">Crear
-                                        Socio</button>
-                                </div>
                             </div>
                             {!! Form::close() !!}
                         </div>

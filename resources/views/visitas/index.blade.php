@@ -162,9 +162,9 @@
                     </button>
                 </div>
                 <div class="modal-body" id="cred">
+                    Selecciona la camara para leer con código
                     <video id="qrvisor" class="w-100"></video>
-                    {{-- <div class="row w-100">
-                    </div> --}}
+                    <div id="cameralist" style="display: flex;justify-content: space-between;flex-wrap: wrap;"></div>
                 </div>
             </div>
         </div>
@@ -224,21 +224,29 @@
         });
 
         Instascan.Camera.getCameras().then(function(cameras) {
-            /* alert(cameras) */
             if (cameras.length > 0) {
-                scanner.start(cameras[1]);
-            } else {
-                alert('No se encontró camara.')
-            }
+                cameras.forEach((item, key) => {
+                    $('#cameralist').append(
+                        `<button class="btn btn-${key % 2 ? 'primary':'warning'}" onclick="camerastar(${key})">Camara ${key+1}</button>`
+                    );
+                });
+            } else alert('No se encontró camara.');
         }).catch(function(e) {
-            alert(e)
             console.log(e)
         })
 
+        function camerastar(cam) {
+            Instascan.Camera.getCameras().then(function(cameras) {
+                scanner.stop();
+                setTimeout(() => {
+                    scanner.start(cameras[cam]);
+                }, 100);
+            })
+
+        }
+
         scanner.addListener('scan', function(respuesta) {
             registUser(respuesta);
-
-            //$('#searchUser').val(response)
         })
     </script>
 @endsection

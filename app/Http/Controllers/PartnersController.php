@@ -38,7 +38,7 @@ class PartnersController extends Controller
                 $q->where('name', '=', $value); // '=' is optional
             })
             ->paginate(10);
-        
+
         $value2 = 'Agua';
         $partnersAgua = Businesses_partners::with(['Businesses', 'Partners'])
             ->whereHas('Businesses', function ($q) use ($value2) {
@@ -48,7 +48,7 @@ class PartnersController extends Controller
             ->paginate(10);
 
         $partners = Partners::paginate(10);
-        return view('socios.index', compact("partnersVal","partnersAgua"));
+        return view('socios.index', compact("partnersVal", "partnersAgua"));
     }
 
 
@@ -68,7 +68,8 @@ class PartnersController extends Controller
             'phone' => 'required',
             'phone_emergency' => 'required'
         ]); */
-
+        //dd('area ' . $request->area);
+        //dd($request->disability);
         $rand = rand(10, 90);
         $folio = '';
         $numPartAct = date('ymd');
@@ -96,6 +97,12 @@ class PartnersController extends Controller
         $partners->second_lastname = $request->second_lastname;
         $partners->email = $request->email;
         $partners->age = $request->age;
+        $partners->birth = $request->birth;
+        $partners->identifier = $request->identifier;
+        $partners->discount = $request->discount;
+        $partners->reason = $request->reason;
+        $partners->disability = $request->disability == null ? 0 : $request->disability;
+        $partners->area = $request->area == null ? 0 : $request->area;
         $partners->phone = $request->phone;
         $partners->status = 1;
         $partners->phone_emergency = $request->phone_emergency;
@@ -192,6 +199,11 @@ class PartnersController extends Controller
         $partners->second_lastname = $request->second_lastname;
         $partners->email = $request->email;
         $partners->age = $request->age;
+        $partners->birth = $request->birth;
+        $partners->discount = $request->discount;
+        $partners->reason = $request->reason;
+        $partners->disability = $request->disability == null ? 0 : $request->disability;
+        $partners->area = $request->area == null ? 0 : $request->area;
         $partners->phone = $request->phone;
         $partners->phone_emergency = $request->phone_emergency;
         if ($request->certificate != null) {
@@ -235,9 +247,18 @@ class PartnersController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        /* $this->validate($request, [
+            'name' => 'required',
+            'last_name' => 'required',
+            'age' => 'required',
+            'phone' => 'required',
+            'phone_emergency' => 'required',
+            'sign' => 'required'
+        ]); */
         $partners = Partners::find($id);
-        $partners->status = 2;
-        $partners->comm = $request->motivo;
+        $partners->status = intval($request->tipo);
+        $partners->comm = intval($request->tipo) == 2 ? $request->motivo : ' ';
+        $partners->termination = intval($request->tipo) == 2 ? Carbon::now() : ' ';
         $partners->save();
         /* DB::table('answer_f_tecnicas')->where('partner_id', $partners->id)->delete();
         DB::table('businesses_partners')->where('partners_id', $partners->id)->delete();
@@ -306,8 +327,10 @@ class PartnersController extends Controller
 
     public function senEmail($id)
     {
-        $partner_name = Partners::select('name')->where('id', $id)->get()->pluck('name');
-        $partner_name = $partner_name[0];
+        //$partner_name = Partners::select('name')->where('id', $id)->get()->pluck('name');
+        //$partner_name = $partner_name[0];
+        $dataPartner = Partners::select('name', 'last_name', 'second_lastname')->where('id', $id)->first();
+        $partner_name = $dataPartner->name . ' ' . $dataPartner->last_name . ' ' . $dataPartner->second_lastname;
         $partner_photo = Partners::select('foto')->where('id', $id)->first();
 
         $message = [
@@ -317,8 +340,8 @@ class PartnersController extends Controller
 
         Mail::send('socios.email', $message, function ($msj) use ($id) {
 
-            $dataPartner = Partners::select('name', 'num_socio', 'email', 'firma')->where('id', $id)->first();
-            $partner_name = $dataPartner->name;
+            $dataPartner = Partners::select('name', 'last_name', 'second_lastname', 'num_socio', 'email', 'firma')->where('id', $id)->first();
+            $partner_name = $dataPartner->name . ' ' . $dataPartner->last_name . ' ' . $dataPartner->second_lastname;
             $partner_num_socio = $dataPartner->num_socio;
             $partner_email = $dataPartner->email;
             $partner_sign = $dataPartner->firma;
@@ -334,14 +357,18 @@ class PartnersController extends Controller
 
             $fromEmail = $_ENV['MAIL_USERNAME'];
 
-            $rules = Pdf::loadView('socios.reglamento', compact('partner_num_socio', 'partner_name', 'partner_sign'))->setPaper('a4')->setWarnings(false)->save(public_path('doc/Reglamento.pdf'));
-            $aviso = Pdf::loadView('socios.aviso');
+            $partnerData = Partners::find($id);
+            //dd($partnerData);
+            //return view('socios.modals', compact("partnerData"));
+
+            $rules = Pdf::loadView('socios.reglamento', compact('partner_num_socio', 'partner_name', 'partner_sign'))->setPaper('letter')->setWarnings(false)->save(public_path('doc/Reglamento.pdf'));
+            $aviso = Pdf::loadView('socios.cred_digital', compact("partnerData"));
 
             $msj->from($fromEmail, "Spa Val Paraiso");
             $msj->to($partner_email);
             $msj->subject("Entrega de Docs Val Paraiso");
-            $msj->attachData($rules->output(), 'Reglamento.pdf');
-            $msj->attachData($aviso->output(), 'AvisoPrivTermCdnes.pdf');
+            $msj->attachData($rules->output(),  $dataPartner->num_socio . '-DOCS.pdf');
+            $msj->attachData($aviso->output(), 'Credencial.pdf');
         });
 
         return back();

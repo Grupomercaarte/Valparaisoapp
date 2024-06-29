@@ -16,6 +16,12 @@ class Partners extends Model
         'last_name',
         'second_lastname',
         'age',
+        'birth',
+        'identifier',
+        'discount',
+        'reason',
+        'disability',
+        'area',
         'phone',
         'phone_emergency',
         'email',
@@ -28,6 +34,7 @@ class Partners extends Model
         'cer',
         'status',
         'comm',
+        'termination',
     ];
 
     public function business()
