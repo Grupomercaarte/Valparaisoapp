@@ -67,9 +67,9 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Template JS File -->
 <script src="{{ secure_url('web/js/stisla.js') }}"></script>
-<script src="{{ asset('web/js/scripts.js') }}"></script>
-<script src="{{ mix('assets/js/profile.js') }}"></script>
-<script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+<script src="{{ secure_url('web/js/scripts.js') }}"></script>
+<script src="{{ secure_url('assets/js/profile.js') }}"></script>
+<script src="{{ secure_url('assets/js/custom/custom.js') }}"></script>
 <script src="{{ secure_url('js/searchController.js') }}"></script>
 
 <script src="{{ secure_url('js/filesaver.js') }}"></script>
