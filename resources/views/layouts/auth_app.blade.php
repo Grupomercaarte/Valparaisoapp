@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
