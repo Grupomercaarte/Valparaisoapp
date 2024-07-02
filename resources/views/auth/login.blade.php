@@ -42,7 +42,6 @@
                             </a>
                         </div>
                     </div>
-                    <label for="">{{mix('assets/js/profile.js') }}</label>
                     <input aria-describedby="passwordHelpBlock" id="password" type="password"
                         value="{{ Cookie::get('password') !== null ? Cookie::get('password') : null }}"
                         placeholder="Enter Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"

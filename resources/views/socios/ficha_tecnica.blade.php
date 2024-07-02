@@ -135,6 +135,10 @@
     .button-3 .checkbox:checked~.layer {
         background-color: #f1fceb;
     }
+
+    .modal-backdrop.show {
+        display: none;
+    }
 </style>
 
 <div class="modal fade" id="fichaModal" id="exampleModalCenter" tabindex="-1" role="dialog"
