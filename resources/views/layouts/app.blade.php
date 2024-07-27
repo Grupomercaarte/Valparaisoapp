@@ -10,23 +10,23 @@
     <title>@yield('title') Valparaiso</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ https_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ https_asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <!--<script src="https://kit.fontawesome.com/a985f22f2f.js" crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
-    <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/spinkit.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ https_asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ https_asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ https_asset('css/spinkit.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
     @yield('page_css')
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('web/css/style.css?v67') }}">
-    <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
+    <link rel="stylesheet" href="{{ https_asset('web/css/style.css?v67') }}">
+    <link rel="stylesheet" href="{{ https_asset('web/css/components.css') }}">
     @yield('page_css')
 
     @yield('css')
