@@ -58,24 +58,24 @@
     @include('profile.edit_profile')
 
 </body>
-<script src="{{ secure_asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/sweetalert.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/iziToast.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/select2.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/js/iziToast.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Template JS File -->
-<script src="{{ secure_asset('web/js/stisla.js') }}"></script>
-<script src="{{ secure_asset('web/js/scripts.js') }}"></script>
+<script src="{{ asset('web/js/stisla.js') }}"></script>
+<script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
-<script src="{{ secure_asset('js/searchController.js') }}"></script>
+<script src="{{ asset('js/searchController.js') }}"></script>
 
-<script src="{{ secure_asset('js/filesaver.js') }}"></script>
-<script src="{{ secure_asset('js/html2canvas.js') }}"></script>
-<script src="{{ secure_asset('js/block-ui.js') }}"></script>
+<script src="{{ asset('js/filesaver.js') }}"></script>
+<script src="{{ asset('js/html2canvas.js') }}"></script>
+<script src="{{ asset('js/block-ui.js') }}"></script>
 @yield('page_js')
 @yield('scripts')
 <script>
