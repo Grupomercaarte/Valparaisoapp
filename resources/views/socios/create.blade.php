@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .modal-backdrop.show {
+            display: none;
+        }
+    </style>
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Alta de socios</h3>
@@ -10,35 +15,39 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>Revisa los campos!</strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                </div>
-                            @endif
-
-                            {!! Form::open(['route' => 'socios.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::open([
+                                'route' => 'socios.store',
+                                'method' => 'POST',
+                                'enctype' => 'multipart/form-data',
+                                'class' => 'needs-validation',
+                                'novalidate',
+                            ]) !!}
                             <div class="row">
                                 <div class="col-md-2 col-12">
                                     <div class="form-group">
                                         <label for="business_id">Pertenece</label>
-                                        {!! Form::select('business_id', $negocios, [], ['class' => 'form-control']) !!}
+                                        {!! Form::select('business_id', $negocios, [], ['class' => 'form-control', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-8">
                                     <div class="form-group">
                                         <label for="name">Nombre(s)</label>
-                                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
+                                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="form-group">
                                         <label for="last_name">Primer apellido</label>
-                                        {!! Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name']) !!}
+                                        {!! Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
@@ -57,8 +66,12 @@
                                         {!! Form::text('identifier', null, [
                                             'class' => 'form-control',
                                             'id' => 'identifier',
-                                            'placeholder' => 'Identificador',
+                                            'placeholder' => 'CURP / Pasaporte',
+                                            'required',
                                         ]) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
@@ -86,7 +99,7 @@
                                         {!! Form::text('reason', null, [
                                             'class' => 'form-control',
                                             'id' => 'reason',
-                                            'placeholder' => 'Llenar en caso de Acuerdo',
+                                            'placeholder' => 'Llenar en caso de Descuento',
                                         ]) !!}
                                     </div>
                                 </div>
@@ -150,25 +163,42 @@
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="email">Correo</label>
-                                        {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Opcional']) !!}
+                                        {!! Form::text('email', null, [
+                                            'class' => 'form-control',
+                                            'id' => 'email',
+                                            'placeholder' => 'Opcional',
+                                            'required',
+                                        ]) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-md-4">
                                     <div class="form-group">
                                         <label for="age">Años</label>
-                                        {!! Form::number('age', null, ['class' => 'form-control', 'id' => 'age']) !!}
+                                        {!! Form::number('age', null, ['class' => 'form-control', 'id' => 'age', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-md-4">
                                     <div class="form-group">
                                         <label for="age">F.Nacimiento</label>
-                                        {!! Form::date('birth', null, ['class' => 'form-control', 'id' => 'birth']) !!}
+                                        {!! Form::date('birth', null, ['class' => 'form-control', 'id' => 'birth', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
-                                        <label for="phone">Telefono</label>
-                                        {!! Form::text('phone', null, ['class' => 'form-control', 'id' => 'phone', 'maxlength ' => '10']) !!}
+                                        <label for="phone">Teléfono</label>
+                                        {!! Form::text('phone', null, ['class' => 'form-control', 'id' => 'phone', 'maxlength ' => '10', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
@@ -178,7 +208,11 @@
                                             'class' => 'form-control',
                                             'id' => 'phone_emergency',
                                             'maxlength ' => '10',
+                                            'required',
                                         ]) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
@@ -186,8 +220,8 @@
                                         <label for="certificate">Constancia medica</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <button class="btn btn-warning" style="z-index: 0;" id="showFile"
-                                                    type="button">Subir
+                                                <button class="btn btn-secondary text-dark" style="z-index: 0;"
+                                                    id="showFile" type="button">Subir
                                                     Archivo</button>
                                             </div>
                                             <input type="text" id="nameFile" class="form-control"
@@ -201,36 +235,69 @@
                                         <label class="labelWeb">ANTES DE FIRMAR.</label>
                                         <div class="row">
                                             <div class="col-xl-6 col-md-6">
-                                                <input type="button" class="btn btn-primary form-control"
-                                                    onclick="window.open('{{ asset('doc/Documentos.pdf') }}', '_blank');"
-                                                    value="Leer Documentos">
+                                                <a class="btn btn-primary form-control" href="/documentos"
+                                                    target="_blank">Documentos</a>
+
                                             </div>
                                             <div class="col-xl-6 col-md-6">
-                                                <input type="button" class="btn btn-info form-control"
-                                                    data-toggle="modal"data-target="#fichaModal"
-                                                    value="Llenar Ficha tecnica">
+                                                <input type="button" class="btn btn-danger form-control"
+                                                    data-toggle="modal"data-target="#fichaModal" value="Ficha tecnica">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-6">
-                                    <input type="button" class="btn btn-primary form-control"
-                                        data-toggle="modal"data-target="#cameraModal" value="Fotografía">
+                                    <input type="button" class="btn btn-warning form-control getCamera"
+                                        value="Fotografía" />
+                                    <input type="file" class="d-none" accept="image/*" capture="camera"
+                                        id="camera" />
+                                    <canvas id="cam" width=64 height=64 class="d-none"></canvas>
+                                    <div id="text" class="text-center">
+                                        {!! Form::text('image-tag', null, [
+                                            'class' => 'd-none',
+                                            'id' => 'image-tag',
+                                            'required',
+                                        ]) !!}
+                                        <div class="invalid-feedback badge-danger mt-1 mb-3rounded"
+                                            style="font-size: 14px">
+                                            No se ha tomado la fotografía.
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6">
-                                    <input type="button" class="btn btn-danger form-control"
-                                        data-toggle="modal"data-target="#firmaModal" value="Firmar">
+                                <div class="col-xl-4 col-lg-6 text-center">
+                                    <input type="button" class="btn btn-info form-control"
+                                        data-toggle="modal"data-target="#firmaModal" data-backdrop="static"
+                                        data-keyboard="false" value="Firmar">
+                                    {!! Form::text('signData', null, [
+                                        'class' => 'd-none',
+                                        'id' => 'signData',
+                                        'required',
+                                    ]) !!}
+                                    <div class="invalid-feedback badge-danger mt-1 mb-3 rounded" style="font-size: 14px">
+                                        No se ha firmado de consentimiento.
+                                    </div>
                                 </div>
                                 @include ('socios.ficha_tecnica')
                                 @include ('socios.webCam_Signature')
                                 <div class="col-xl-4 col-lg-6">
-                                    <button class="btn btn-success form-control" id="saveBtn" type="submit">Crear
+                                    <button class="btn btn-success form-control" id="saveBtn">Crear
                                         Socio</button>
                                 </div>
                             </div>
                             {!! Form::close() !!}
                         </div>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Verifica lo siguiente:</strong>
+                            <hr>
+                            @foreach ($errors->all() as $error)
+                                <span>{{ $error }}</span>
+                            @endforeach
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -245,5 +312,38 @@
                 nameFile.value = dataFile.files[0].name;
             }
         }
+    </script>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    $(".card").block({
+                        message: '<div class="sk-wave sk-primary mx-auto"><div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div></div>',
+                        //timeout: 100000,
+                        css: {
+                            backgroundColor: "transparent",
+                            border: "0"
+                        },
+                        overlayCSS: {
+                            backgroundColor: "#555",
+                            opacity: 0.8
+                        }
+                    })
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                        $(".card").unblock();
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     </script>
 @endsection

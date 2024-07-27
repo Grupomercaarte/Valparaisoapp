@@ -57,7 +57,10 @@ Route::get('/', function () {
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-
+/* Route::get('/documentos', function () {
+    return 'Hello World';
+}); */
+Route::view('/documentos', 'socios/viewer');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/home/store', [App\Http\Controllers\HomeController::class, 'store'])->name('history.store');
 

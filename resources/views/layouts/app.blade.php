@@ -4,28 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" type="image/jpg" href="{{ secure_url('img/ico.png?v2') }}" />
+    <link rel="icon" type="image/jpg" href="{{ asset('img/ico.png?v2') }}" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <title>@yield('title') Valparaiso</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
-    <link href="{{ secure_url('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link href="{{ secure_url('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <!--<script src="https://kit.fontawesome.com/a985f22f2f.js" crossorigin="anonymous"></script>-->
-    <link rel="stylesheet" href="{{ secure_url('assets/css/iziToast.min.css') }}">
-    <link href="{{ secure_url('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ secure_url('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
+    <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/spinkit.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
     @yield('page_css')
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ secure_url('web/css/style.css?v61') }}">
-    <link rel="stylesheet" href="{{ secure_url('web/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/style.css?v67') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
     @yield('page_css')
 
     @yield('css')
@@ -57,23 +58,24 @@
     @include('profile.edit_profile')
 
 </body>
-<script src="{{ secure_url('assets/js/jquery.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/popper.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/sweetalert.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/iziToast.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/select2.min.js') }}"></script>
-<script src="{{ secure_url('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/js/iziToast.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Template JS File -->
-<script src="{{ secure_url('web/js/stisla.js') }}"></script>
-<script src="{{ secure_url('web/js/scripts.js') }}"></script>
-<script src="{{ secure_url('assets/js/profile.js') }}"></script>
-<script src="{{ secure_url('assets/js/custom/custom.js') }}"></script>
-<script src="{{ secure_url('js/searchController.js') }}"></script>
+<script src="{{ asset('web/js/stisla.js') }}"></script>
+<script src="{{ asset('web/js/scripts.js') }}"></script>
+<script src="{{ mix('assets/js/profile.js') }}"></script>
+<script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+<script src="{{ asset('js/searchController.js') }}"></script>
 
-<script src="{{ secure_url('js/filesaver.js') }}"></script>
-<script src="{{ secure_url('js/html2canvas.js') }}"></script>
+<script src="{{ asset('js/filesaver.js') }}"></script>
+<script src="{{ asset('js/html2canvas.js') }}"></script>
+<script src="{{ asset('js/block-ui.js') }}"></script>
 @yield('page_js')
 @yield('scripts')
 <script>

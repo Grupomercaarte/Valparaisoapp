@@ -51,29 +51,16 @@
         .modal {
             z-index: 1024;
         }
+
+        .modal-backdrop.show {
+            display: none;
+        }
     </style>
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Visitas</h3>
         </div>
-        <div class="row  d-block">
-            <div class="float-right">
-                <div class="input-group">
-                    <button onclick="$('#QRLector').modal('show');" type="button" class="btn btn-info ml-2 mr-2">
-                        <i class="fas fa-qrcode"></i>
-                    </button>
-                    <div class="form-outline">
-                        <input type="search" id="searchUser" onkeyup="searchUser()" class="form-control"
-                            placeholder="Buscar" />
-                        <input type="hidden" value="Visitas" id="option" name="option">
-                    </div>
-                    <button onclick="registUser();" type="button" class="btn btn-success ml-2 mr-2">
-                        <i class="fas fa-plus"></i> Entrada
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="section-body" style="margin-top: 100px">
+        <div class="section-body">
             @if (session('message'))
                 <span class="badge badge-danger">{{ session('message') }}</span>
             @elseif(session('messageT'))
@@ -84,11 +71,31 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (\Illuminate\Support\Facades\Auth::user()->id == 1)
-                                <a href="{{ route('visitas.listado') }}" class="btn btn-warning">
-                                    <span>Ver entradas de otras fechas</span>
-                                </a>
-                            @endif
+                            <div class="row d-block m-1" style="height: 10px">
+                                @if (\Illuminate\Support\Facades\Auth::user()->id == 1)
+                                    <div class="float-left">
+                                        <a href="{{ route('visitas.listado') }}" class="btn btn-warning form-control">
+                                            <span>Ver entradas de otras fechas</span>
+                                        </a>
+                                    </div>
+                                @endif
+                                <div class="float-right">
+                                    <div class="input-group">
+                                        <button onclick="$('#QRLector').modal('show');" type="button"
+                                            class="btn btn-info mr-2">
+                                            <i class="fas fa-qrcode"></i> QR
+                                        </button>
+                                        <div class="form-outline">
+                                            <input type="search" id="searchUser" onkeyup="searchUser()"
+                                                class="form-control" placeholder="Buscar Socio" />
+                                            <input type="hidden" value="Visitas" id="option" name="option">
+                                        </div>
+                                        <button onclick="registUser();" type="button" class="btn btn-success ml-2">
+                                            <i class="fas fa-plus"></i> Entrada
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <style>
                                 #tableSucursales .dropdown-item {
                                     font-size: 17px !important;
@@ -102,7 +109,7 @@
                                 }
                             </style>
                             {{-- <a href="{{ route('visitas.create') }}" class="btn btn-warning">Registrar visita</a> --}}
-                            <div class="table-responsive">
+                            <div class="table-responsive mt-5">
                                 <table class="table text-nowrap table-striped table-hover mt-2" id="visit">
                                     <thead style="background-color: #6777ef;">
                                         <th style="display: none;">ID</th>
@@ -153,7 +160,7 @@
     </section>
     <div class="modal fade" id="QRLector" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Registrar Entrada</h5>
@@ -224,6 +231,12 @@
         });
 
         Instascan.Camera.getCameras().then(function(cameras) {
+            scanner.stop();
+            scanner.start(cameras[1]);
+        })
+
+
+        /* Instascan.Camera.getCameras().then(function(cameras) {
             if (cameras.length > 0) {
                 cameras.forEach((item, key) => {
                     $('#cameralist').append(
@@ -243,10 +256,11 @@
                 }, 100);
             })
 
-        }
+        } */
 
         scanner.addListener('scan', function(respuesta) {
             registUser(respuesta);
+            $('#QRLector').modal('hide');
         })
     </script>
 @endsection

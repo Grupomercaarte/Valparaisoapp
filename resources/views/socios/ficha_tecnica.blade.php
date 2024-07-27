@@ -4,7 +4,7 @@
         /* Hidden by default */
         position: fixed;
         /* Stay in place */
-        z-index: 1;
+        z-index: 2;
         /* Sit on top */
         padding-top: 50px;
         /* Location of the box */
@@ -134,10 +134,6 @@
 
     .button-3 .checkbox:checked~.layer {
         background-color: #f1fceb;
-    }
-
-    .modal-backdrop.show {
-        display: none;
     }
 </style>
 
@@ -448,6 +444,24 @@
         </div>
     </div>
 </div>
+
+{{-- <div class="modal fade" id="documentsModal" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Documentos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cred">
+                <iframe src="https://valparaiso.ventitux.com/documentos"
+                    style="width: 100%; height: 65vh; border: 1px solid #d7d7d7; border-radius: 10px;"></iframe>
+            </div>
+        </div>
+    </div>
+</div> --}}
 
 <script>
     for (let i = 0; i < 8; i++) {

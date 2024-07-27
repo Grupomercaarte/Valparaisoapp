@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .modal-backdrop.show {
+            z-index: 1;
+        }
+    </style>
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Edicion datos de socio {{ $partner->num_socio }}</h3>
+            <h3 class="page__heading">No. de socio: {{ $partner->num_socio }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -27,7 +32,19 @@
                                 'enctype' => 'multipart/form-data',
                             ]) !!}
                             <div class="row">
-
+                                <style>
+                                    .thumbnail {
+                                        width: 124px;
+                                        height: 124px;
+                                        display: flex;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        margin-bottom: 1.5em;
+                                        border-radius: 100%;
+                                        box-shadow: 0 13px 26px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+                                    }
+                                </style>
+                                <img src="data:image/png;base64,{{ $partner->foto }}" id="image-prof" class="thumbnail">
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Nombre</label>
@@ -240,7 +257,7 @@
                                         <label for="certificate">Constancia medica</label>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <button class="btn btn-warning" style="z-index: 0;" id="showFile"
+                                                <button class="btn btn-info" style="z-index: 0;" id="showFile"
                                                     type="button">Subir
                                                     Archivo</button>
                                             </div>
@@ -250,12 +267,27 @@
                                         {!! Form::file('certificate', ['class' => 'd-none', 'id' => 'dataFile']) !!}
                                     </div>
                                 </div>
-                                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xl-4 col-lg-6">
                                     <div class="form-group">
-                                        <label for="certificate">Subir nueva constancia medica</label>
-                                        {!! Form::file('certificate', null, ['class' => 'form-control', 'require']) !!}
+                                        <label for="certificate">Fotografía</label>
+                                        <input type="button" class="btn btn-warning form-control getCamera"
+                                            value="Actualizar" />
+                                        <input type="file" class="d-none" accept="image/*" capture="camera"
+                                            id="camera" />
+                                        <canvas id="cam" width=64 height=64 class="d-none"></canvas>
+                                        <div id="text" class="text-center">
+                                            {!! Form::text('image-tag', 'data:image/jpeg;base64,' . $partner->foto, [
+                                                'class' => 'd-none',
+                                                'id' => 'image-tag',
+                                                'required',
+                                            ]) !!}
+                                            <div class="invalid-feedback badge-danger mt-1 mb-3rounded"
+                                                style="font-size: 14px">
+                                                No se ha tomado la fotografía.
+                                            </div>
+                                        </div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
@@ -293,12 +325,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="">Proceso para nueva firma digital y foto</label>
-                                        @include ('socios.webCam_Signature')
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button class="btn btn-primary form-control" type="submit">Guardar</button>
@@ -311,6 +343,7 @@
             </div>
         </div>
     </section>
+    @include ('socios.webCam_Signature')
     <script>
         var showFile = document.getElementById("showFile");
         var nameFile = document.getElementById("nameFile");

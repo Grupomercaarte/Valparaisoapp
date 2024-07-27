@@ -32,13 +32,12 @@ class PartnersController extends Controller
         //$partnersVal = Businesses_partners::with('Businesses')->where('Businesses.name', 'Val')->paginate(10);
 
         $value = 'Val';
-        $partnersVal = Businesses_partners::with(['Businesses', 'Partners'])
-            ->whereHas('Businesses', function ($q) use ($value) {
+        $partnersVal = Businesses_partners::with(['Businesses', 'Partners'])->get();
+        /* ->whereHas('Businesses', function ($q) use ($value) {
                 // Query the name field in status table
                 $q->where('name', '=', $value); // '=' is optional
             })
-            ->paginate(10);
-
+            ->paginate(10); */
         $value2 = 'Agua';
         $partnersAgua = Businesses_partners::with(['Businesses', 'Partners'])
             ->whereHas('Businesses', function ($q) use ($value2) {
@@ -47,7 +46,7 @@ class PartnersController extends Controller
             })
             ->paginate(10);
 
-        $partners = Partners::paginate(10);
+        //$partners = Partners::paginate(10);
         return view('socios.index', compact("partnersVal", "partnersAgua"));
     }
 
