@@ -5,7 +5,6 @@ namespace App\Providers;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -32,6 +31,5 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Carbon::setLocale(config('app.locale'));
         setlocale(LC_ALL, 'es_MX', 'es', 'ES', 'es_MX.utf8');
-       
     }
 }
