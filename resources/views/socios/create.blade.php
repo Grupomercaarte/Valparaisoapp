@@ -5,6 +5,30 @@
         .modal-backdrop.show {
             display: none;
         }
+
+        .button-3.tarj .knobs:before {
+            content: "NO";
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            padding: 10px 3px;
+            border-radius: 50%;
+            transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+            background-color: #fc544b;
+        }
+
+        .button-3.tarj .checkbox:checked+.knobs:before {
+            content: "SI";
+            left: 42px;
+            background-color: #47c363;
+        }
     </style>
     <section class="section">
         <div class="section-header">
@@ -23,7 +47,7 @@
                                 'novalidate',
                             ]) !!}
                             <div class="row">
-                                <div class="col-md-2 col-12">
+                                <div class="col-xl-3 col-md-3">
                                     <div class="form-group">
                                         <label for="business_id">Pertenece</label>
                                         {!! Form::select('business_id', $negocios, [], ['class' => 'form-control', 'required']) !!}
@@ -32,7 +56,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-md-8">
+                                <div class="col-xl-5 col-md-9">
                                     <div class="form-group">
                                         <label for="name">Nombre(s)</label>
                                         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'required']) !!}
@@ -41,7 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="last_name">Primer apellido</label>
                                         {!! Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name', 'required']) !!}
@@ -50,7 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="second_lastname">Segundo apellido</label>
                                         {!! Form::text('second_lastname', null, [
@@ -60,9 +84,27 @@
                                         ]) !!}
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-4">
                                     <div class="form-group">
-                                        <label for="discount">identifier</label>
+                                        <label for="age">F.Nacimiento</label>
+                                        {!! Form::date('birth', null, ['class' => 'form-control', 'id' => 'birth', 'required']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-md-3">
+                                    <div class="form-group">
+                                        <label for="age">Años</label>
+                                        {!! Form::number('age', null, ['class' => 'form-control', 'id' => 'age', 'required', 'readonly']) !!}
+                                        <div class="invalid-feedback" style="font-size: 14px">
+                                            Campo Necesario.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-5">
+                                    <div class="form-group">
+                                        <label for="discount">Identificador</label>
                                         {!! Form::text('identifier', null, [
                                             'class' => 'form-control',
                                             'id' => 'identifier',
@@ -74,119 +116,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group">
-                                        <label>Tipo descuento</label>
-                                        <div>
-                                            <div class="form-check form-check-inline">
-                                                {{ Form::radio('discount', 'ninguno', true, ['class' => 'form-check-input', 'id' => 'ninguno']) }}
-                                                {{ Form::label('ninguno', 'Ninguno', ['class' => 'form-check-label']) }}
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                {{ Form::radio('discount', 'pencion', '', ['class' => 'form-check-input', 'id' => 'pencion']) }}
-                                                {{ Form::label('pencion', 'Pencion', ['class' => 'form-check-label']) }}
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                {{ Form::radio('discount', 'acuerdo', '', ['class' => 'form-check-input', 'id' => 'acuerdo']) }}
-                                                {{ Form::label('acuerdo', 'Acuerdo', ['class' => 'form-check-label']) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="form-group">
-                                        <label for="reason">Motivo descuento</label>
-                                        {!! Form::text('reason', null, [
-                                            'class' => 'form-control',
-                                            'id' => 'reason',
-                                            'placeholder' => 'Llenar en caso de Descuento',
-                                        ]) !!}
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Discapacidad:</label>
-                                        <div class="form-check" style="margin-top: .7rem;">
-                                            <div class="button r button-3 tarj">
-                                                <input type="checkbox" class="checkbox" />
-                                                <div class="knobs"></div>
-                                                <div class="layer"></div>
-                                            </div>
-                                            <div class="d-none datas">
-                                                {!! Form::checkbox('disability', 0, true) !!} <label for="">No</label>
-                                                {!! Form::checkbox('disability', 1, false) !!} <label for="">Si</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Area verde:</label>
-                                        <div class="form-check" style="margin-top: .7rem;">
-                                            <div class="button r button-3 tarj">
-                                                <input type="checkbox" class="checkbox" />
-                                                <div class="knobs"></div>
-                                                <div class="layer"></div>
-                                            </div>
-                                            <div class="d-none datas">
-                                                {!! Form::checkbox('area', 0, true) !!} <label for="">No</label>
-                                                {!! Form::checkbox('area', 1, false) !!} <label for="">Si</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <style>
-                                    .button-3.tarj .knobs:before {
-                                        content: "NO";
-                                        position: absolute;
-                                        top: 4px;
-                                        left: 4px;
-                                        width: 28px;
-                                        height: 28px;
-                                        color: #fff;
-                                        font-size: 10px;
-                                        font-weight: bold;
-                                        text-align: center;
-                                        line-height: 1;
-                                        padding: 10px 3px;
-                                        border-radius: 50%;
-                                        transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
-                                        background-color: #fc544b;
-                                    }
-
-                                    .button-3.tarj .checkbox:checked+.knobs:before {
-                                        content: "SI";
-                                        left: 42px;
-                                        background-color: #47c363;
-                                    }
-                                </style>
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
                                         <label for="email">Correo</label>
                                         {!! Form::text('email', null, [
                                             'class' => 'form-control',
                                             'id' => 'email',
-                                            'placeholder' => 'Opcional',
+                                            'placeholder' => 'ejemplo@ejemplo.com',
                                             'required',
                                         ]) !!}
-                                        <div class="invalid-feedback" style="font-size: 14px">
-                                            Campo Necesario.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-md-4">
-                                    <div class="form-group">
-                                        <label for="age">Años</label>
-                                        {!! Form::number('age', null, ['class' => 'form-control', 'id' => 'age', 'required']) !!}
-                                        <div class="invalid-feedback" style="font-size: 14px">
-                                            Campo Necesario.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 col-md-4">
-                                    <div class="form-group">
-                                        <label for="age">F.Nacimiento</label>
-                                        {!! Form::date('birth', null, ['class' => 'form-control', 'id' => 'birth', 'required']) !!}
                                         <div class="invalid-feedback" style="font-size: 14px">
                                             Campo Necesario.
                                         </div>
@@ -217,57 +155,145 @@
                                 </div>
                                 <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
-                                        <label for="certificate">Constancia medica</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary text-dark" style="z-index: 0;"
-                                                    id="showFile" type="button">Subir
-                                                    Archivo</button>
+                                        <label>Tipo descuento</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                {{ Form::radio('discount', 'ninguno', true, ['class' => 'form-check-input', 'id' => 'ninguno']) }}
+                                                {{ Form::label('ninguno', 'Ninguno', ['class' => 'form-check-label']) }}
                                             </div>
-                                            <input type="text" id="nameFile" class="form-control"
-                                                placeholder="Nombre de Archivo" readonly>
+                                            <div class="form-check form-check-inline">
+                                                {{ Form::radio('discount', 'pencion', '', ['class' => 'form-check-input', 'id' => 'pencion']) }}
+                                                {{ Form::label('pencion', 'Pencion', ['class' => 'form-check-label']) }}
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                {{ Form::radio('discount', 'acuerdo', '', ['class' => 'form-check-input', 'id' => 'acuerdo']) }}
+                                                {{ Form::label('acuerdo', 'Acuerdo', ['class' => 'form-check-label']) }}
+                                            </div>
                                         </div>
-                                        {!! Form::file('certificate', ['class' => 'd-none', 'id' => 'dataFile']) !!}
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="form-group">
-                                        <label class="labelWeb">ANTES DE FIRMAR.</label>
-                                        <div class="row">
-                                            <div class="col-xl-6 col-md-6">
-                                                <a class="btn btn-primary form-control" href="/documentos"
-                                                    target="_blank">Documentos</a>
-
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <input type="button" class="btn btn-danger form-control"
-                                                    data-toggle="modal"data-target="#fichaModal" value="Ficha tecnica">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6">
-                                    <input type="button" class="btn btn-warning form-control getCamera"
-                                        value="Fotografía" />
-                                    <input type="file" class="d-none" accept="image/*" capture="camera"
-                                        id="camera" />
-                                    <canvas id="cam" width=64 height=64 class="d-none"></canvas>
-                                    <div id="text" class="text-center">
-                                        {!! Form::text('image-tag', null, [
-                                            'class' => 'd-none',
-                                            'id' => 'image-tag',
-                                            'required',
+                                        <label for="reason">Motivo descuento</label>
+                                        {!! Form::text('reason', null, [
+                                            'class' => 'form-control',
+                                            'id' => 'reason',
+                                            'placeholder' => 'Llenar en caso de Descuento',
                                         ]) !!}
-                                        <div class="invalid-feedback badge-danger mt-1 mb-3rounded"
-                                            style="font-size: 14px">
-                                            No se ha tomado la fotografía.
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-md-3">
+                                    <div class="form-group">
+                                        <label>Discapacidad:</label>
+                                        <div class="form-check" style="margin-top: .7rem;">
+                                            <div class="button r button-3 tarj">
+                                                <input type="checkbox" class="checkbox" />
+                                                <div class="knobs"></div>
+                                                <div class="layer"></div>
+                                            </div>
+                                            <div class="d-none datas">
+                                                {!! Form::checkbox('disability', 0, true) !!} <label for="">No</label>
+                                                {!! Form::checkbox('disability', 1, false) !!} <label for="">Si</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6 text-center">
-                                    <input type="button" class="btn btn-info form-control"
-                                        data-toggle="modal"data-target="#firmaModal" data-backdrop="static"
-                                        data-keyboard="false" value="Firmar">
+                                <div class="col-xl-2 col-md-3">
+                                    <div class="form-group">
+                                        <label>Area verde:</label>
+                                        <div class="form-check" style="margin-top: .7rem;">
+                                            <div class="button r button-3 tarj">
+                                                <input type="checkbox" class="checkbox" />
+                                                <div class="knobs"></div>
+                                                <div class="layer"></div>
+                                            </div>
+                                            <div class="d-none datas">
+                                                {!! Form::checkbox('area', 0, true) !!} <label for="">No</label>
+                                                {!! Form::checkbox('area', 1, false) !!} <label for="">Si</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="certificate">Constancia medica</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-secondary text-dark" style="z-index: 0;"
+                                                            id="showFile" type="button">Subir
+                                                            Archivo</button>
+                                                    </div>
+                                                    <input type="text" id="nameFile" class="form-control"
+                                                        placeholder="Nombre de Archivo" readonly>
+                                                </div>
+                                                {!! Form::file('certificate', ['class' => 'd-none', 'id' => 'dataFile']) !!}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                            <div class="form-group">
+                                                <label for="certificate">ANTES DE FIRMAR DEBE:</label>
+                                                <a class="btn btn-primary form-control" href="/documentos"
+                                                    target="_blank">Leer
+                                                    Documentos</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="button" class="btn btn-danger form-control"
+                                                    data-toggle="modal"data-target="#fichaModal"
+                                                    value="Llenar Ficha Técnica">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input type="button" class="btn btn-warning form-control getCamera"
+                                                    value="Capturar Fotografía" />
+                                                <input type="file" class="d-none" accept="image/*" capture="camera"
+                                                    id="camera" />
+                                                <canvas id="cam" width=64 height=64 class="d-none"></canvas>
+                                                <div id="text" class="text-center">
+                                                    {!! Form::text('image-tag', null, [
+                                                        'class' => 'd-none',
+                                                        'id' => 'image-tag',
+                                                        'required',
+                                                    ]) !!}
+                                                    <div class="invalid-feedback badge-danger mt-1 mb-3rounded"
+                                                        style="font-size: 14px">
+                                                        No se ha tomado la fotografía.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                            <div class="form-group">
+                                                <label for="certificate">DESPUÉS DE FIRMAR DEBE:</label>
+                                                <button class="btn btn-success form-control" id="saveBtn">CREAR
+                                                    SOCIO</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 text-center mb-3">
+                                    <label for="certificate">FIRMA DE CONCENTIMIENTO</label>
+                                    <div id="signature-pad" class="signature-pad">
+                                        <div class="signature-pad--body">
+                                            <canvas id="canvas" width="650" height="400"
+                                                class="drop-container"></canvas>
+                                        </div>
+                                        <div style="display: flex;justify-content: space-between;" class="mt-3">
+                                            <button type="button" class="clear btn btn-danger"
+                                                data-action="clear">Limpiar</button>
+                                            <button type="button" class="btn btn-warning"
+                                                data-action="undo">Retroceder</button>
+                                            <input type="button" class="btn btn-info" id="btnDescargar"
+                                                value="Guardar Firma" />
+                                        </div>
+                                    </div>
                                     {!! Form::text('signData', null, [
                                         'class' => 'd-none',
                                         'id' => 'signData',
@@ -277,12 +303,13 @@
                                         No se ha firmado de consentimiento.
                                     </div>
                                 </div>
+
                                 @include ('socios.ficha_tecnica')
                                 @include ('socios.webCam_Signature')
-                                <div class="col-xl-4 col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <button class="btn btn-success form-control" id="saveBtn">Crear
                                         Socio</button>
-                                </div>
+                                </div> --}}
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -345,5 +372,17 @@
                 }, false)
             })
         })()
+        $("#birth").change(function(e) {
+            var hoy = new Date();
+            var cumpleanos = new Date($(this).val());
+            var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+            var m = hoy.getMonth() - cumpleanos.getMonth();
+
+            if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                edad--;
+            }
+
+            $("#age").val(edad);
+        });
     </script>
 @endsection

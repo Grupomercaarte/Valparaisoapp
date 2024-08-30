@@ -169,7 +169,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="cred">
-                    Selecciona la camara para leer con código
+                    {{-- Selecciona la camara para leer con código --}}
                     <video id="qrvisor" class="w-100"></video>
                     <div id="cameralist" style="display: flex;justify-content: space-between;flex-wrap: wrap;"></div>
                 </div>

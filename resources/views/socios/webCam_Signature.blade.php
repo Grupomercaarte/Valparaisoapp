@@ -162,7 +162,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="firmaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+{{-- <div class="modal fade" id="firmaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -184,7 +184,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script> --}}
 <script src="{{ asset('js/signature-pad.js') }}"></script>
@@ -262,7 +262,7 @@
 
     // On mobile devices it might make more sense to listen to orientation change,
     // rather than window resize events.
-    window.onresize = resizeCanvas;
+    //window.onresize = resizeCanvas;
 
     function dataURLToBlob(dataURL) {
         // Code taken from https://github.com/ebidel/filer.js
