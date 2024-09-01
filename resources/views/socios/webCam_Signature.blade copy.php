@@ -80,13 +80,13 @@
         <label class="labelWeb">Es necesario leer los documentos antes de firmar:</label>
         <br>
         <ul>
-            <li><a target="_blank" href="{{ asset('doc/Aviso_Privacidad_Terminos_Condiciones.pdf') }}">
+            <li><a target="_blank" href="{{ secure_url('doc/Aviso_Privacidad_Terminos_Condiciones.pdf') }}">
                     <span style="text-decoration: underline var(--secondary);">Aviso de Términos y Condiciones.</span>
                 </a></li>
-            <li><a target="_blank" href="{{ asset('files/REGLAMENTO.pdf') }}">
+            <li><a target="_blank" href="{{ secure_url('files/REGLAMENTO.pdf') }}">
                     <span style="text-decoration: underline var(--secondary);">Aviso de Privacidad.</span>
                 </a></li>
-            <li><a target="_blank" href="{{ asset('doc/reglamento.pdf') }}">
+            <li><a target="_blank" href="{{ secure_url('doc/reglamento.pdf') }}">
                     <span style="text-decoration: underline var(--secondary);">Reglamento.</span>
                 </a></li>
         </ul>

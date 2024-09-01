@@ -72,7 +72,7 @@
     <div>
         <table class="borde" style="width: 110%">
             <thead>
-                <th class="borde"> <img src="{{ asset('img/logo.png') }}" alt="Logotipo"></th>
+                <th class="borde"> <img src="{{ secure_url('img/logo.png') }}" alt="Logotipo"></th>
                 <th>
                     <p class="centrado">
                         {{ $venta->usercash->cashregister->office->street }}

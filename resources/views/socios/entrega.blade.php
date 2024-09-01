@@ -91,14 +91,14 @@
 <body>
     <div>
         <img class="profile_cred" src="data:image/png;base64,{{ $partnerData->foto }}" alt="Red dot" />
-        <img src="{{ asset('/img/anverso.png?v1') }}" id="background_cred" />
+        <img src="{{ secure_url('/img/anverso.png?v1') }}" id="background_cred" />
         <p class="socio_cred">
             {{ $partnerData->name . ' ' . $partnerData->last_name . ' ' . $partnerData->second_lastname }}
         </p>
         <span class="phone_cred">Tel: {{ $partnerData->phone }}</span>
     </div>
     <div>
-        <img id="background_cred2" src="{{ asset('/img/reverso.png?v1') }}" />
+        <img id="background_cred2" src="{{ secure_url('/img/reverso.png?v1') }}" />
         <div class="qr_cred">
             <img src="data:image/png;base64,{!! base64_encode(
                 QrCode::size(100)->format('png')->generate($partnerData->num_socio),

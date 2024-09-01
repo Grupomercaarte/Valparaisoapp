@@ -21,7 +21,7 @@
         <div class="card mt-2">
             <div class="row g-0">
                 <div class="col-md-6">
-                    <img src="{{ asset('img/logo.png') }}" class="img-fluid rounded-start" alt="..." style="max-width: 100%">
+                    <img src="{{ secure_url('img/logo.png') }}" class="img-fluid rounded-start" alt="..." style="max-width: 100%">
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">

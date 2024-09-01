@@ -75,7 +75,7 @@
     <div>
         <table class="borde" style="width: 100%">
             <thead>
-                <th class="borde"> <img src="{{ asset('img/logo_val.jpeg') }}" alt="Logotipo"
+                <th class="borde"> <img src="{{ secure_url('img/logo_val.jpeg') }}" alt="Logotipo"
                         style="width: 50px; height:50px"></th>
                 <th>
                     <p class="centrado">

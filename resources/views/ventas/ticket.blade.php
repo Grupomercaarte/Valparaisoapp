@@ -50,7 +50,7 @@ img {
 
 </style>
 <div class="ticket">
-    <img src="{{ asset('img/logo.png') }}" alt="Logotipo">
+    <img src="{{ secure_url('img/logo.png') }}" alt="Logotipo">
     <p class="centrado">
         {{ $venta->usercash->cashregister->office->street }} #{{ $venta->usercash->cashregister->office->number }}, {{ $venta->usercash->cashregister->office->suburb }}, {{ $venta->usercash->cashregister->office->postal_code }}, {{ $venta->usercash->cashregister->office->city }} {{ $venta->usercash->cashregister->office->state }}, {{ $venta->usercash->cashregister->office->country }}<br>
         Atendido por {{ $venta->usercash->user->name }} {{ $venta->usercash->user->last_name }}<br>
@@ -128,7 +128,7 @@ img {
     </div>
     <br>
     <div class="centrado">
- <img  src="{{ asset('img/logo.png') }}" style="width: 100px; height:100px" alt="Logotipo">
+ <img  src="{{ secure_url('img/logo.png') }}" style="width: 100px; height:100px" alt="Logotipo">
     </div>
 
     <p class="centrado" >¡GRACIAS POR SU COMPRA!</p>
