@@ -232,7 +232,7 @@
 
         Instascan.Camera.getCameras().then(function(cameras) {
             scanner.stop();
-            scanner.start(cameras[1]);
+            scanner.start(cameras[2]);
         })
 
 
