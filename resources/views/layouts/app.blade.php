@@ -13,7 +13,7 @@
     <link href="{{ secure_url('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_url('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <!--<script src="https://kit.fontawesome.com/a985f22f2f.js" crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="{{ secure_url('assets/css/iziToast.min.css') }}">
     <link href="{{ secure_url('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
