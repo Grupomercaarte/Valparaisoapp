@@ -296,5 +296,10 @@
 
     $btnDescargar.onclick = () => {
         $("#signData").val(canvas.toDataURL());
+        $("#signature-pad").addClass("canvas-disable");
+        // Disable buttons
+        $("#btnDescargar").prop("disabled", true);
+        $("#btnClean").prop("disabled", true);
+        $("#btnUndo").prop("disabled", true);
     };
 </script>
