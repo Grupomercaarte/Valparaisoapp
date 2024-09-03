@@ -3,14 +3,14 @@
     <title>Documentos</title>
 
     <meta charset="UTF-8">
-    <link rel="icon" type="image/jpg" href="http://valparaiso.ventitux.com/public/img/ico.png?v2">
+    <link rel="icon" type="image/jpg" href="https://aguacalientevalparaiso.com/public/img/ico.png?v2">
 </head>
 <script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
 
 <script type="module">
     // If absolute URL from the remote server is provided, configure the CORS
     // header on that server.
-    var url = 'https://valparaiso.ventitux.com/public/doc/Documentos.pdf';
+    var url = 'https://aguacalientevalparaiso.com/public/doc/Documentos.pdf';
 
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
     var {
@@ -113,8 +113,8 @@
         renderPage(pageNum);
     });
 </script>
-<link rel="icon" type="image/jpg" href="{{ asset('img/ico.png?v2') }}" />
-<link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/jpg" href="{{ secure_url('img/ico.png?v2') }}" />
+<link href="{{ secure_url('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
 <style>
     #nav {
         position: fixed;
