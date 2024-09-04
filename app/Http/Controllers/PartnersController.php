@@ -354,7 +354,7 @@ class PartnersController extends Controller
             $partner_sign = 'sign' . $partner_num_socio . '.jpeg';
             $partner_photo = Partners::select('foto')->where('id', $id)->first(); */
 
-            $fromEmail = $_ENV['MAIL_USERNAME'];
+            $fromEmail = env('MAIL_USERNAME');
 
             $partnerData = Partners::find($id);
             //dd($partnerData);
