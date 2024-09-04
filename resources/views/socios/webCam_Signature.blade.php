@@ -187,7 +187,7 @@
 </div> --}}
 
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script> --}}
-<script src="{{ secure_url('js/signature-pad.js') }}"></script>
+<script src="{{ asset('js/signature-pad.js') }}"></script>
 <script>
     /* var showFile2 = document.getElementById("showFile2");
     var nameFile2 = document.getElementById("nameFile2");

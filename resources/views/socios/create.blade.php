@@ -29,6 +29,11 @@
             left: 42px;
             background-color: #47c363;
         }
+
+        .canvas-disable {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
     <section class="section">
         <div class="section-header">
@@ -278,6 +283,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-xl-8 text-center mb-3">
                                     <label for="certificate">FIRMA DE CONCENTIMIENTO</label>
                                     <div id="signature-pad" class="signature-pad">
@@ -286,9 +292,9 @@
                                                 class="drop-container"></canvas>
                                         </div>
                                         <div style="display: flex;justify-content: space-between;" class="mt-3">
-                                            <button type="button" class="clear btn btn-danger"
+                                            <button type="button" id="btnClean" class="clear btn btn-danger"
                                                 data-action="clear">Limpiar</button>
-                                            <button type="button" class="btn btn-warning"
+                                            <button type="button" id="btnUndo" class="btn btn-warning"
                                                 data-action="undo">Retroceder</button>
                                             <input type="button" class="btn btn-info" id="btnDescargar"
                                                 value="Guardar Firma" />
@@ -306,10 +312,6 @@
 
                                 @include ('socios.ficha_tecnica')
                                 @include ('socios.webCam_Signature')
-                                {{-- <div class="col-lg-6">
-                                    <button class="btn btn-success form-control" id="saveBtn">Crear
-                                        Socio</button>
-                                </div> --}}
                             </div>
                             {!! Form::close() !!}
                         </div>
