@@ -359,7 +359,7 @@ class PartnersController extends Controller
             // $fromEmail = env('MAIL_USERNAME');
             $fromEmail =config('mail.mailers.smtp.username');
 
-            return dd( $fromEmail);
+            // return dd( $fromEmail);
             $partnerData = Partners::find($id);
             //dd($partnerData);
             //return view('socios.modals', compact("partnerData"));
