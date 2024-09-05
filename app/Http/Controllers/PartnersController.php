@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Mail;
+// use Mail;
 
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as Pdf;
@@ -20,6 +20,8 @@ use App\Models\Businesses_partners;
 use App\Models\Ficha_Tecnica;
 use App\Models\Answer_fTecnica;
 use App\Models\Attendance_Partner;
+use Illuminate\Support\Facades\Mail;
+
 
 //use App\Mail\Mensaje;
 
@@ -356,6 +358,7 @@ class PartnersController extends Controller
 
             $fromEmail = env('MAIL_USERNAME');
 
+            return dd( $fromEmail);
             $partnerData = Partners::find($id);
             //dd($partnerData);
             //return view('socios.modals', compact("partnerData"));
