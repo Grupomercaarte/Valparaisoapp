@@ -114,7 +114,7 @@
     });
 </script>
 <link rel="icon" type="image/jpg" href="{{ asset('img/ico.png?v2') }}" />
-<link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ secure_url('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
 <style>
     #nav {
         position: fixed;

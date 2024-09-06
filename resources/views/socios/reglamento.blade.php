@@ -24,7 +24,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background-image: url(https://aguacalientevalparaiso.com/public/img/bg-documentos.jpg);
+            background-image: url(https://aguacalientevalparaiso.com/img/bg-documentos.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             content: "";

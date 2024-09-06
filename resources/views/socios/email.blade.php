@@ -345,7 +345,7 @@ END CONFIG STYLES
             height: 100%;
             background-repeat: no-repeat;
             background-position: center top;
-            background-image: url('https://aguacalientevalparaiso.com/public/img/bg-email2.jpg');
+            background-image: url('https://aguacalientevalparaiso.com/img/bg-email2.jpg');
         }
 
         .es-wrapper-color,
@@ -770,11 +770,11 @@ END RESPONSIVE STYLES
     <div class="es-wrapper-color">
         <!--[if gte mso 9]>
    <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-    <v:fill type="tile" src="https://aguacalientevalparaiso.com/public/img/bg-email.jpg" color="#223748" origin="0.5, 0" position="0.5, 0"></v:fill>
+    <v:fill type="tile" src="https://aguacalientevalparaiso.com/img/bg-email.jpg" color="#223748" origin="0.5, 0" position="0.5, 0"></v:fill>
    </v:background>
   <![endif]-->
         <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0"
-            background="https://aguacalientevalparaiso.com/public/img/bg-email2.jpg"
+            background="https://aguacalientevalparaiso.com/img/bg-email2.jpg"
             style="background-position: center top;">
             <tbody>
                 <tr>
@@ -811,7 +811,7 @@ END RESPONSIVE STYLES
                                                                                         style="font-size:0"><a
                                                                                             target="_blank">
                                                                                             <img class="adapt-img esdev-empty-img"
-                                                                                                src="https://aguacalientevalparaiso.com/public/img/logo_val-n.png?v2"
+                                                                                                src="https://aguacalientevalparaiso.com/img/logo_val-n.png?v2"
                                                                                                 alt width="300px">
                                                                                         </a>
                                                                                     </td>
