@@ -149,7 +149,7 @@ class PartnersController extends Controller
         // $partner_name = 'Herman Toala Ballinas';
         // $partner_sign = 'sign25092022.jpeg';
 
-        $pdf = Pdf::loadView('socios.reglamento', compact('partner_num_socio', 'partner_name', 'partner_sign'))->setPaper('a4')->setWarnings(false)->save(public_path('doc/Reglamento.pdf'));
+        $pdf = Pdf::loadView('socios.reglamento', compact('partner_num_socio', 'partner_name', 'partner_sign'))->setPaper('a4')->setWarnings(false)->save(public_path('doc/documentos.pdf'));
 
         /* $zip = new \ZipArchive();
         $fileName = 'valParaiso_Docs' . $partner_num_socio . '.zip';

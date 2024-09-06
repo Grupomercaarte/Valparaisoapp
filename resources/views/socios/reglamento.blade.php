@@ -24,7 +24,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background-image: url(https://valparaiso.ventitux.com/public/img/bg-documentos.jpg);
+            background-image: url(https://aguacalientevalparaiso.com/public/img/bg-documentos.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             content: "";
@@ -65,15 +65,25 @@
         </span>
     </div>
     <p>
-        Mediante el presente aviso de privacidad hacemos de su conocimiento los términos a los que se sujeta el uso
-        que daremos a los datos personales que por razón de la
-        relación comercial que mantenemos son de indispensable necesidad para poder llevarse a cabo.
+        Mediante el presente aviso de privacidad hacemos de su conocimiento los términos
+        a los que se sujeta el uso que daremos a los datos personales que por razón de la
+        relación comercial que mantenemos son de indispensable necesidad para poder
+        llevarse a cabo.
+    </p>
+    <p>
+        “Agua Caliente Spa Hot Spring S DE RL DE CV” se reserva el derecho de admisión
+        a personas que se encuentren en estado de ebriedad y/o bajo el consumo de
+        estupefacientes o sustancias ilegales, incluyendo que ningún cliente deberá estar
+        en posesión, uso, distribución, compra y venta de cualquier medicamento y/o
+        sustancia ilegal.
+
     </p>
     <p>
         Agua Caliente Spa Hot Spring S DE RL DE CV. con domicilio en Av. De La Paz
         16420, C.P. 22416, Col. Mineral Santa Fe, Tijuana Baja California, es el responsable
         del uso y protección de sus datos personales, y al respecto le informamos lo
         siguiente:
+
     </p>
     <p>
         <b>¿Para qué fines utilizaremos sus datos personales?</b>
@@ -117,7 +127,7 @@
         Finalidad Secundaria B.- Para ofertar promociones.
     </p>
     <p>
-        Finalidad secundaria C.- para notificar avisos de vigencia del contrato
+        Finalidad secundaria C.- para notificar avisos de vigencia del contrato.
     </p>
     <p>
         Finalidad Secundaria D.- Para prevenir riesgos sanitarios
@@ -304,6 +314,82 @@
         </b>
     </p>
     <br>
+    <div style="display: flex;flex-direction: column;align-items: center; width: 100%;text-align: center;">
+        <img src="{{ $partner_sign }}"
+            style="border: #000 1px solid;border-radius:10px;width: 8cm;padding-bottom:1cm; background-color:#fff;">
+        <p style="text-align: center; margin-top:-1cm;">{{ $partner_name }}</p>
+        <p style="text-align: center;"><b>FIRMA Y NOMBRE DEL SOCIO.</b></p>
+    </div>
+    <br><br><br><br><br><br><br><br>
+
+    <div class="title">
+        <p>
+            <b>ACUERDO DE CONFIDENCIALIDAD Y NO DIVULGACIÓN DE INFORMACIÓN</b>
+        </p>
+    </div>
+    <p>
+        Que celebran por una parte <strong>“La persona que firme este documento”</strong> a quien en lo
+        sucesivo se denominara <strong>“EL DESTINATARIO”</strong> y por la otra, la persona física
+        <strong>“AGUACALIENTE SPA HOT SPRING S DE RL DE CV”</strong> se denominara <strong>“EL
+            PROPIETARIO”</strong> al tenor de las declaraciones y clausulas siguientes:
+
+    </p>
+    <p>
+        El presente acuerdo se refiere a la información que <strong>“EL PROPIETARIO”</strong> proporcione a
+        <strong>“EL DESTINATARIO”</strong>, ya sea de forma oral, visual, grafica o escrita y, en estos dos
+        últimos casos, ya este contenida en cualquier tipo de documento.
+    </p>
+    <p>
+        <strong>“EL DESTINATARIO”</strong> no podrán reproducir, modificar, grabar, compartir, hacer pública
+        o divulgar a terceros la información objeto del presente acuerdo sin previa autorización
+        escrita y expresa del <strong>“PROPIETARIO”</strong>.
+    </p>
+    <p>
+        En este acto, <strong>“EL DESTINATARIO”</strong> quien fungirá como encargado de los datos
+        personales que <strong>“EL PROPIETARIO”</strong> le transfiera, se obliga a proteger y guardar
+        confidencialidad respecto a dichos datos personales y/o sensibles que pudiera tratar
+        derivado del cumplimiento del presente contrato. De conformidad y en cumplimiento
+        con lo establecido en los artículos 14 y 21 de La Ley Federal de Protección de Datos
+        Personales en Posesión de los particulares, publicada en el Diario Oficial de la
+        Federación el día 26 de enero del año 2018.
+    </p>
+    <p>
+        Sera obligación del <strong>“DESTINATARIO”</strong>, Tratar los datos personales, patrimoniales y
+        sensibles a razón de lo establecido en el presente contrato sin obtener algún beneficio
+        propio, derivado del tratamiento de los datos personales proporcionados, así como a
+        no ser transferidos a terceros sin autorización por parte del <strong>“PROPIETARIO”</strong>.
+    </p>
+    <p>
+        En caso de que <strong>“EL DESTINATARIO”</strong> requiera transferir los datos proporcionados a
+        terceros, este será responsable de los posibles daños o prejuicios que se pudieran
+        ocasionar al <strong>“PROPIETARIO”</strong> de ser necesario
+    </p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>
+        Ambas partes reconocen y se obligan a cumplir con el principio de responsabilidad
+        consagrado en la Ley Federal de Protección de Datos Personales en posesión de los
+        particulares y por su Reglamento, Códigos y Términos y condiciones. Así mismo,
+        llevaran a cabo las acciones necesarias para dar un cabal cumplimiento a lo
+        establecido.
+    </p>
+    <p>
+        <strong>“EL DESTINATARIO”</strong> garantizara el debido tratamiento de datos personales,
+        privilegiando los intereses de la empresa y la expectativa razonable de su privacidad.
+
+    </p>
+    <p>
+        <strong>
+            OTORGO MI CONSENTIMIENTO PARA QUE MIS DATOS PERSONALES
+            SENSIBLES SEAN TRATADOS CONFORME A LO SEÑALADO EN EL
+            PRESENTE ACUERDO DE CONFIDENCIALIDAD Y NO DIVULGACION DE
+            INFORMACION; Y MANIFIESTO QUE HE LEIDO Y ACEPTO LO ESTABLECIDO
+            EN EL PRESENTE DOCUMENTO, ASI COMO EL ALCANCE LEGAL DEL
+            MISMO.
+        </strong>
+    </p>
     <div style="display: flex;flex-direction: column;align-items: center; width: 100%;text-align: center;">
         <img src="{{ $partner_sign }}"
             style="border: #000 1px solid;border-radius:10px;width: 8cm;padding-bottom:1cm; background-color:#fff;">
