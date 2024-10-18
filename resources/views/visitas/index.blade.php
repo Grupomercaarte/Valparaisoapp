@@ -56,6 +56,9 @@
             display: none;
         }
     </style>
+    @php
+        use Carbon\Carbon;
+    @endphp
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Visitas</h3>
@@ -129,7 +132,6 @@
                                                 <td class="text-center">{{ explode(' ', $data->entrada)[1] }}</td>
                                                 @if ($data->salida != '')
                                                     @php
-                                                    use Carbon\Carbon;
                                                         try {
                                                             // Crea objetos Carbon para las horas de entrada y salida
                                                             $entrada = Carbon::parse($data->entrada);
@@ -142,7 +144,7 @@
                                                         }
                                                     @endphp
                                                     <td class="text-center">{{ explode(' ', $data->salida)[1] }}</td>
-                                                    <td class="text-center">{{$diferenciaHoras}} </td>
+                                                    <td class="text-center">{{ $diferenciaHoras }} </td>
                                                 @else
                                                     <td class="text-center">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['visitas.destroy', $data->id], 'style' => 'display:inline']) !!}
