@@ -138,7 +138,8 @@
                                                             $salida = Carbon::parse($data->salida);
 
                                                             // Calcula la diferencia en horas
-                                                            $diferenciaHoras = $salida->diffInHours($entrada);
+                                                            $diferenciaHoras = $salida->diff($entrada);
+                                                            $diferenciaHoras = $diferenciaHoras->format('%h horas %i minutos');
                                                         } catch (\Exception $e) {
                                                             $diferenciaHoras = 'Error';
                                                         }
