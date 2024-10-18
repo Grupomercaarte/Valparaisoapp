@@ -129,6 +129,7 @@
                                                 <td class="text-center">{{ explode(' ', $data->entrada)[1] }}</td>
                                                 @if ($data->salida != '')
                                                     @php
+                                                    use Carbon\Carbon;
                                                         try {
                                                             // Crea objetos Carbon para las horas de entrada y salida
                                                             $entrada = Carbon::parse($data->entrada);
