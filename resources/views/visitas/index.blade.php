@@ -129,7 +129,7 @@
                                                 <td class="text-center">{{ explode(' ', $data->entrada)[1] }}</td>
                                                 @if ($data->salida != '')
                                                     <td class="text-center">{{ explode(' ', $data->salida)[1] }}</td>
-                                                    <td class="text-center">{{ explode(' ', $data->entrada - $data->salida)[1] }} </td>
+                                                    {{-- <td class="text-center">{{ explode(' ', $data->entrada - $data->salida)[1] }} </td> --}}
                                                 @else
                                                     <td class="text-center">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['visitas.destroy', $data->id], 'style' => 'display:inline']) !!}
