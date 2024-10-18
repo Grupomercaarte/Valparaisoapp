@@ -12,6 +12,7 @@
     <!-- Bootstrap 4.1.1 -->
     <link href="{{ secure_url('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link href="{{ secure_url('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <!--<script src="https://kit.fontawesome.com/a985f22f2f.js" crossorigin="anonymous"></script>-->

@@ -304,7 +304,7 @@
         manera formal en nuestras instalaciones o a través de su dirección de correo
         electrónico.
     </p>
-    <p>
+    <p> 
         <b>
             OTORGO MI CONSENTIMIENTO PARA QUE MIS DATOS PERSONALES
             SENSIBLES SEAN TRATADOS CONFORME A LO SEÑALADO EN EL
@@ -313,7 +313,6 @@
             DOCUMENTO, ASI COMO EL ALCANCE LEGAL DEL MISMO.
         </b>
     </p>
-    <br>
     <div style="display: flex;flex-direction: column;align-items: center; width: 100%;text-align: center;">
         <img src="{{ $partner_sign }}"
             style="border: #000 1px solid;border-radius:10px;width: 8cm;padding-bottom:1cm; background-color:#fff;">
