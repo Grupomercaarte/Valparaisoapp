@@ -128,8 +128,20 @@
                                                     {{ $data->partners->second_lastname }}</td>
                                                 <td class="text-center">{{ explode(' ', $data->entrada)[1] }}</td>
                                                 @if ($data->salida != '')
+                                                    @php
+                                                        try {
+                                                            // Crea objetos Carbon para las horas de entrada y salida
+                                                            $entrada = Carbon::parse($data->entrada);
+                                                            $salida = Carbon::parse($data->salida);
+
+                                                            // Calcula la diferencia en horas
+                                                            $diferenciaHoras = $salida->diffInHours($entrada);
+                                                        } catch (\Exception $e) {
+                                                            $diferenciaHoras = 'Error';
+                                                        }
+                                                    @endphp
                                                     <td class="text-center">{{ explode(' ', $data->salida)[1] }}</td>
-                                                    {{-- <td class="text-center">{{ explode(' ', $data->entrada - $data->salida)[1] }} </td> --}}
+                                                    <td class="text-center">{{$diferenciaHoras}} </td>
                                                 @else
                                                     <td class="text-center">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['visitas.destroy', $data->id], 'style' => 'display:inline']) !!}
