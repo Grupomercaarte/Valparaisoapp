@@ -144,7 +144,7 @@
                                                         }
                                                     @endphp
                                                     <td class="text-center">{{ explode(' ', $data->salida)[1] }}</td>
-                                                    <td class="text-center">{{ $diferenciaHoras }} </td>
+                                                    <td class="text-center">{{ $diferenciaHoras }} {{$diferenciaHoras > 1 ? 'horas': 'hora' }}</td>
                                                 @else
                                                     <td class="text-center">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['visitas.destroy', $data->id], 'style' => 'display:inline']) !!}
