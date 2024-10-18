@@ -117,6 +117,7 @@
                                         <th class="text-light">Nombre completo</th>
                                         <th class="text-center text-light">Entrada</th>
                                         <th class="text-center text-light">Salida</th>
+                                        <th class="text-center text-light">Tiempo total</th>
                                     </thead>
                                     <tbody id="tableSucursales">
                                         @forelse ($visits as $data)
@@ -128,6 +129,7 @@
                                                 <td class="text-center">{{ explode(' ', $data->entrada)[1] }}</td>
                                                 @if ($data->salida != '')
                                                     <td class="text-center">{{ explode(' ', $data->salida)[1] }}</td>
+                                                    <td class="text-center">{{ explode(' ', $data->entrada)[1] - explode(' ', $data->salida)[1] }} </td>
                                                 @else
                                                     <td class="text-center">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['visitas.destroy', $data->id], 'style' => 'display:inline']) !!}
@@ -139,6 +141,7 @@
                                                         {!! Form::close() !!}
                                                     </td>
                                                 @endif
+
                                             </tr>
                                         @empty
                                         @endforelse
