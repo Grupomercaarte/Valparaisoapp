@@ -139,7 +139,9 @@
 
                                                             // Calcula la diferencia en horas
                                                             $diferenciaHoras = $salida->diff($entrada);
-                                                            $diferenciaHoras = $diferenciaHoras->format('%h horas %i minutos');
+                                                            $diferenciaHoras = $diferenciaHoras->format(
+                                                                '%h horas %i minutos',
+                                                            );
                                                         } catch (\Exception $e) {
                                                             $diferenciaHoras = 'Error';
                                                         }
@@ -208,41 +210,62 @@
         }
 
         function searchUser() {
-            const tableReg = document.getElementById('visit');
+            console.log('hola');
             const searchText = document.getElementById('searchUser').value.toLowerCase();
-            let total = 0;
-            // Recorremos todas las filas con contenido de la tabla
-            for (let i = 1; i < tableReg.rows.length; i++) {
-                // Si el td tiene la clase "noSearch" no se busca en su cntenido
-                if (tableReg.rows[i].classList.contains("noSearch")) continue;
-                let found = false;
-                const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
-                // Recorremos todas las celdas
-                for (let j = 0; j < cellsOfRow.length && !found; j++) {
-                    const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-                    // Buscamos el texto en el contenido de la celda
-                    if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
-                        found = true;
-                        total++;
-                    }
-                }
-                // si no ha encontrado ninguna coincidencia, esconde la
-                // fila de la tabla
-                if (found) tableReg.rows[i].style.display = '';
-                else tableReg.rows[i].style.display = 'none';
-            }
-            // mostramos las coincidencias
-            const lastTR = tableReg.rows[tableReg.rows.length - 1];
-            const td = lastTR.querySelector("td");
-            lastTR.classList.remove("hide", "red");
-            if (searchText == "") lastTR.classList.add("hide");
-            else if (total) td.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "");
-            else {
-                lastTR.classList.add("red");
-                td.innerHTML = "No se han encontrado coincidencias";
-            }
 
+            fetch('/visitas/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        search: searchText
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('tableSucursales');
+                    tableBody.innerHTML = ''; // Limpiar la tabla
+
+                    if (data.length > 0) {
+                        data.forEach(visit => {
+                            const entrada = visit.entrada.split(' ')[1];
+                            const salida = visit.salida ? visit.salida.split(' ')[1] : '';
+
+                            let diferenciaHoras = '';
+                            if (salida) {
+                                const entradaTime = moment(visit.entrada);
+                                const salidaTime = moment(visit.salida);
+                                diferenciaHoras = salidaTime.diff(entradaTime, 'hours') + ' horas ' + (
+                                    salidaTime.diff(entradaTime, 'minutes') % 60) + ' minutos';
+                            } else {
+                                diferenciaHoras = `<form method="POST" action="/visitas/${visit.id}" style="display:inline">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="badge badge-danger badge-pill" style="border: 1px solid transparent;">Registrar salida</button>
+                    </form>`;
+                            }
+
+                            const row = `<tr>
+                    <td style="display: none;">${visit.id}</td>
+                    <td>${visit.partners.num_socio}</td>
+                    <td>${visit.partners.name} ${visit.partners.last_name} ${visit.partners.second_lastname}</td>
+                    <td class="text-center">${entrada}</td>
+                    <td class="text-center">${salida}</td>
+                    <td class="text-center">${diferenciaHoras}</td>
+                </tr>`;
+
+                            tableBody.innerHTML += row;
+                        });
+                    } else {
+                        tableBody.innerHTML =
+                            '<tr><td colspan="6" class="text-center">No se han encontrado coincidencias</td></tr>';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
+
+
         var scanner = new Instascan.Scanner({
             video: document.getElementById('qrvisor'),
             scanPeriod: 10,

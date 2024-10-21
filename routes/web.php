@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UserController::class);
     Route::resource('ventas', SaleController::class);
     Route::resource('visitas', VisitsController::class);
+    Route::post('visitas/search',[VisitsController::class,'search']);
     Route::get('ventas/{id}/ticket', [SaleController::class, 'ticket'])->name('ventas.ticket');
     Route::resource('vender', SellController::class);
     Route::resource('usercash', UserCashController::class);

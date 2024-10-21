@@ -14,7 +14,8 @@ class VisitsController extends Controller
 
     public function index()
     {
-        $visits = Visits::with('partners')->where('entrada', 'like', date("Y-m-d") . '%')->paginate(18);
+        $visits = Visits::with('partners')->where('entrada', 'like', date("Y-m-d") . '%')
+                        ->orderBy('id','DESC')->paginate(18);
         return view('visitas.index', compact("visits"));
     }
     /**
@@ -23,6 +24,33 @@ class VisitsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function search(Request $request)
+    {
+        // $visits = Visits::with('partners')->where('entrada', 'like', date("Y-m-d") . '%')->paginate(18);
+        $searchTerm = $request->search; // Supongamos que estás obteniendo el término de búsqueda desde una solicitud
+        $todayDate = date("Y-m-d");
+        $visits = Visits::with('partners')
+            ->where('entrada', 'like', $todayDate . '%')
+            ->when($searchTerm, function ($query, $searchTerm) {
+                $query->where(function ($query) use ($searchTerm) {
+                    $query->orWhereHas('partners', function ($query) use ($searchTerm) {
+                        $query->orWhere('num_socio', 'like', '%' . $searchTerm . '%')
+                            ->orWhere('name', 'like', '%' . $searchTerm . '%')
+                            ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
+                            ->orWhere('second_lastname', 'like', '%' . $searchTerm . '%')
+                            ->orWhere(DB::raw("CONCAT(name, ' ', last_name, ' ', second_lastname)"), 'LIKE', '%' . $searchTerm . '%');
+                    });
+                });
+            })
+            ->paginate(18);
+        //         num_socio
+        // name
+        // last_name
+        // second_lastname
+        return response()->json(['status_code' => 200, 'visits'=>$visits]);
+    }
+
     public function store(Request $request)
     {
         //dd($request->id);
@@ -85,18 +113,14 @@ class VisitsController extends Controller
 
     }
 
-    public function edit($id)
-    {
-    }
+    public function edit($id) {}
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-    }
+    public function update(Request $request, $id) {}
 
     public function destroy($id)
     {
