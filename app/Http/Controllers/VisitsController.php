@@ -43,7 +43,7 @@ class VisitsController extends Controller
                     });
                 });
             })
-            ->paginate(18);
+            ->get();
         //         num_socio
         // name
         // last_name
