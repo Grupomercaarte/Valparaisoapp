@@ -210,7 +210,6 @@
         }
 
         function searchUser() {
-            console.log('hola');
             const searchText = document.getElementById('searchUser').value.toLowerCase();
 
             fetch('/visitas/search', {
@@ -229,8 +228,8 @@
                     const tableBody = document.getElementById('tableSucursales');
                     tableBody.innerHTML = ''; // Limpiar la tabla
 
-                    if (data.length > 0) {
-                        data.forEach(visit => {
+                    if (data.visits.length > 0) {
+                        data.visits.forEach(visit => {
                             console.log(visit);
                             const entrada = visit.entrada.split(' ')[1];
                             const salida = visit.salida ? visit.salida.split(' ')[1] : '';
