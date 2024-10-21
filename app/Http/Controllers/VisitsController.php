@@ -30,18 +30,18 @@ class VisitsController extends Controller
         // $visits = Visits::with('partners')->where('entrada', 'like', date("Y-m-d") . '%')->paginate(18);
         $searchTerm = $request->search; // Supongamos que estás obteniendo el término de búsqueda desde una solicitud
         $todayDate = date("Y-m-d");
+        $todayDate = date("Y-m-d"); // Asegúrate de definir $todayDate antes de la consulta
+        $searchTerm = request()->input('search'); // Asumiendo que estás obteniendo el término de búsqueda de la solicitud
+
         $visits = Visits::with('partners')
             ->where('entrada', 'like', $todayDate . '%')
             ->when($searchTerm, function ($query, $searchTerm) {
-                $query->where(function ($query) use ($searchTerm) {
-                    $query->orWhereHas('partners', function ($query) use ($searchTerm) {
-                       $query ->orWhere(DB::raw("CONCAT(name, ' ', last_name, ' ', second_lastname)"), 'LIKE', '%' . $searchTerm . '%')
+                $query->whereHas('partners', function ($query) use ($searchTerm) {
+                    $query->where(DB::raw("CONCAT(name, ' ', last_name, ' ', second_lastname)"), 'LIKE', '%' . $searchTerm . '%')
                         ->orWhere('num_socio', 'like', '%' . $searchTerm . '%')
-                            ->orWhere('name', 'like', '%' . $searchTerm . '%')
-                            ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
-                            ->orWhere('second_lastname', 'like', '%' . $searchTerm . '%');
-
-                    });
+                        ->orWhere('name', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('second_lastname', 'like', '%' . $searchTerm . '%');
                 });
             })
             ->get();
