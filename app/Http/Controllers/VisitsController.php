@@ -35,11 +35,12 @@ class VisitsController extends Controller
             ->when($searchTerm, function ($query, $searchTerm) {
                 $query->where(function ($query) use ($searchTerm) {
                     $query->orWhereHas('partners', function ($query) use ($searchTerm) {
-                        $query->orWhere('num_socio', 'like', '%' . $searchTerm . '%')
+                       $query ->orWhere(DB::raw("CONCAT(name, ' ', last_name, ' ', second_lastname)"), 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('num_socio', 'like', '%' . $searchTerm . '%')
                             ->orWhere('name', 'like', '%' . $searchTerm . '%')
                             ->orWhere('last_name', 'like', '%' . $searchTerm . '%')
-                            ->orWhere('second_lastname', 'like', '%' . $searchTerm . '%')
-                            ->orWhere(DB::raw("CONCAT(name, ' ', last_name, ' ', second_lastname)"), 'LIKE', '%' . $searchTerm . '%');
+                            ->orWhere('second_lastname', 'like', '%' . $searchTerm . '%');
+
                     });
                 });
             })
