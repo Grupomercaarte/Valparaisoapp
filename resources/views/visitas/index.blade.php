@@ -62,7 +62,7 @@
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Visitas</h3>
-            <strong>{{Carbon::now()->format('dd-MM-YY')}}</strong>
+            <strong>{{Carbon::now()->isoFormat('dddd D [de] MMMM [de] YYYY')}}</strong>
         </div>
         <div class="section-body">
             @if (session('message'))
