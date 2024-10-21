@@ -55,6 +55,24 @@
         .modal-backdrop.show {
             display: none;
         }
+
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page__heading {
+            margin-bottom: 10px;
+            /* Añade un margen inferior si es necesario */
+        }
+
+        .date-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
     </style>
     @php
         use Carbon\Carbon;
@@ -62,8 +80,11 @@
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Visitas</h3>
-            <strong>{{Carbon::now()->isoFormat('dddd D [de] MMMM [de] YYYY')}}</strong>
+            <div class="date-container">
+                <strong>{{ Carbon::now()->isoFormat('dddd D [de] MMMM [de] YYYY') }}</strong>
+            </div>
         </div>
+
         <div class="section-body">
             @if (session('message'))
                 <span class="badge badge-danger">{{ session('message') }}</span>
