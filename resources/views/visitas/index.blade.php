@@ -229,7 +229,7 @@
                     tableBody.innerHTML = ''; // Limpiar la tabla
 
                     if (data.length > 0) {
-                        data.forEach(visit => {
+                        data.visits.forEach(visit => {
                             const entrada = visit.entrada.split(' ')[1];
                             const salida = visit.salida ? visit.salida.split(' ')[1] : '';
 
