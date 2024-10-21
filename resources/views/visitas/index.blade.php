@@ -225,11 +225,12 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     const tableBody = document.getElementById('tableSucursales');
                     tableBody.innerHTML = ''; // Limpiar la tabla
 
                     if (data.length > 0) {
-                        data.visits.forEach(visit => {
+                        data.forEach(visit => {
                             const entrada = visit.entrada.split(' ')[1];
                             const salida = visit.salida ? visit.salida.split(' ')[1] : '';
 
