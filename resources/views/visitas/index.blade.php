@@ -235,7 +235,7 @@
 
         function searchUser() {
             const searchText = document.getElementById('searchUser').value.toLowerCase();
-
+            const csrfToken = '{{ csrf_token() }}';
             fetch('/visitas/search', {
                     method: 'POST',
                     headers: {
@@ -267,6 +267,7 @@
                             } else {
                                 diferenciaHoras = `<form method="POST" action="/visitas/${visit.id}" style="display:inline">
                         <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="${csrfToken}">
                         <button type="submit" class="badge badge-danger badge-pill" style="border: 1px solid transparent;">Registrar salida</button>
                     </form>`;
                             }
