@@ -265,7 +265,7 @@
                                 diferenciaHoras = salidaTime.diff(entradaTime, 'hours') + ' horas ' + (
                                     salidaTime.diff(entradaTime, 'minutes') % 60) + ' minutos';
                             } else {
-                                diferenciaHoras = `<form method="POST" action="/visitas/${visit.id}" style="display:inline">
+                                diferenciaHoras = `<form method="POST" action="{{asset('/visitas/${visit.id}')}}" style="display:inline">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="badge badge-danger badge-pill" style="border: 1px solid transparent;">Registrar salida</button>
                     </form>`;
