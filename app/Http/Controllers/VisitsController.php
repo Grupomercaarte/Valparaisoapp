@@ -57,7 +57,7 @@ class VisitsController extends Controller
     {
         //dd($request->id);
         $day = Visits::where('partners_id', $request->id)->where('entrada', 'like', date("Y-m-d") . '%')->first();
-        $fechaHoy = Carbon::now()->format('Y-m-d H:i:s');
+        $fechaHoy = Carbon::now('America/Tijuana')->format('Y-m-d H:i:s');
         if (empty($day)) {
             Visits::create([
                 'partners_id' => $request->id,
