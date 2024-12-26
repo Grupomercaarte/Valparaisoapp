@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Business;
 use App\Models\Partners;
 use App\Models\Visits;
+use Carbon\Carbon;
 
 class VisitsController extends Controller
 {
@@ -56,10 +57,11 @@ class VisitsController extends Controller
     {
         //dd($request->id);
         $day = Visits::where('partners_id', $request->id)->where('entrada', 'like', date("Y-m-d") . '%')->first();
+        $fechaHoy = Carbon::now()->format('Y-m-d H:i:s');
         if (empty($day)) {
             Visits::create([
                 'partners_id' => $request->id,
-                'entrada' => date("Y-m-d H:i:s"),
+                'entrada' => $fechaHoy,
                 'user_id' => \Illuminate\Support\Facades\Auth::user()->id,
             ]);
             return redirect()->route('visitas.index')->with('messageT', 'Socio ha registrado entrada');
