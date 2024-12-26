@@ -127,8 +127,9 @@ class VisitsController extends Controller
 
     public function destroy($id)
     {
+        $fechaHoy = Carbon::now('America/Tijuana')->format('Y-m-d H:i:s');
         $visits = Visits::find($id);
-        $visits->salida = date("Y-m-d H:i:s");
+        $visits->salida = $fechaHoy;
         $visits->save();
         return redirect()->route('visitas.index')->with('messageT', 'Se ha registrado la salida correctamente');
     }
